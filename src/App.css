@@ -1,7 +1,8 @@
-.app-wraper {
+.app-wrap {
     width: 1200px;
     margin: 0 auto;
     display: grid;
+    grid-gap: 20px;
     grid-template-areas:
 "h h"
 "n c";
@@ -12,15 +13,12 @@
 
 .header {
     grid-area: h;
-    background-color: lightgreen;
 }
 
 .nav {
     grid-area: n;
-    background-color: lightblue;
 }
 
 .content {
     grid-area: c;
-    background-color: lightgoldenrodyellow;
 }
