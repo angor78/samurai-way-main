@@ -1,18 +1,18 @@
 import React from "react";
-import "./Profile.css"
+import Post from "./Post/Post"
+import s from "./MyPosts.module.css"
 
-
-const Profile = () => {
-  return (<div className="content">
-    <div>Ava+description</div>
-    <div className="posts">
-      MY POSTS
-      <div>new post</div>
-      <div>1 post</div>
-      <div>2 post</div>
+const MyPosts = () => {
+  return (<div className={s.content}>
+    MY POSTS
+    <div>
+      <textarea></textarea>
+      <button>Add post</button>
     </div>
+    <Post message='Hi, how a yo?' likeCount={6}/>
+    <Post message="It's my first yo." likeCount={7}/>
 
   </div>)
 }
 
-export default Profile
+export default MyPosts

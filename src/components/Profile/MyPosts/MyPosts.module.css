@@ -1,3 +1,17 @@
 .content {
   grid-area: c;
 }
+.posts {
+  color: darkred;
+
+}
+.post{
+  border: 1px solid black;
+  width: 200px;
+  margin: 15px;
+  padding: 5px;
+}
+.post img{
+  width: 50px;
+  border-radius: 50%;
+}
