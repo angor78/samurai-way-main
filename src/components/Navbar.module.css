@@ -1,0 +1,6 @@
+.nav {
+  grid-area: n;
+}
+.item{
+  color: orangered ;
+}
