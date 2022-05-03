@@ -4,7 +4,7 @@ import s from "./MyPosts.module.css"
 
 const MyPosts = () => {
   return (<div className={s.content}>
-    MY POSTS
+    <h3>My posts</h3>
     <div>
       <textarea></textarea>
       <button>Add post</button>

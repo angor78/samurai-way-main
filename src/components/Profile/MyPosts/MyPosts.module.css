@@ -3,7 +3,7 @@
 }
 .posts {
   color: darkred;
-
+  padding: 10px;
 }
 .post{
   border: 1px solid black;
