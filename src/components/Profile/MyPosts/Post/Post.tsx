@@ -4,7 +4,7 @@ type PostType= {
   message:string
   likeCount:number
 }
-const Post = (props:PostType) => {
+const Post:React.FC<PostType> = (props) => {
   return (<div className={s.posts}>
 
     <div className={s.post}><img

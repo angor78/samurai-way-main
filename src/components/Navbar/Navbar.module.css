@@ -1,6 +1,17 @@
 .nav {
-  grid-area: n;
+    grid-area: n;
 }
-.item{
-  color: orangered ;
+
+.item a{
+    text-decoration: none;
+}
+
+/* Specific styles for non-active links */
+.item a.link {
+    color: red;
+}
+
+/* Specific styles for active links */
+.item a.link-active {
+    color: orangered;
 }

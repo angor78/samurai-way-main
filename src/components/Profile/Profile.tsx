@@ -2,8 +2,8 @@ import React from "react";
 import "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 
-
-const Profile = () => {
+export type ProfilePropsType = {}
+const Profile = (props: ProfilePropsType) => {
   return (
     <div className="content">
       <div>Ava+description</div>
