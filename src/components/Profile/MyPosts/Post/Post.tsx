@@ -1,9 +1,7 @@
 import s from "../MyPosts.module.css";
 import React from "react";
-type PostType= {
-  message:string
-  likeCount:number
-}
+import {PostType} from "../../../../index";
+
 const Post:React.FC<PostType> = (props) => {
   return (<div className={s.posts}>
 
