@@ -1,7 +1,21 @@
 .dialogs{
     display: grid;
     grid-template-columns: 2fr 10fr;
+    background-color: lightyellow;
+    padding: 15px;
 }
 .dialogsItem .active{
     color: darkred;
+}
+.item{
+    margin-bottom: 10px;
+}
+.item img{
+    width: 30px;
+    border-radius: 50%;
+    vertical-align:  middle;
+
+}
+.item span {
+    margin-left: 5px;
 }
