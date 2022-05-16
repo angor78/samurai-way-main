@@ -14,6 +14,7 @@ import {StatePropsType} from "./redux/state";
 type AppPropsType = {
   state: StatePropsType
   addPost: (newTextToPost: string) => void
+  addMessage:(newTextToMessage:string)=>void
 }
 
 function App(props: AppPropsType) {
@@ -24,7 +25,7 @@ function App(props: AppPropsType) {
         <Navbar/>
         <div className="app-wrap-content">
           <Routes>
-            <Route path={"/dialogs"} element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
+            <Route path={"/dialogs"} element={<Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage}/>}/>
             <Route path={"/profile"} element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
             <Route path={"/music"} element={<Music/>}/>
             <Route path={"/news"} element={<News/>}/>

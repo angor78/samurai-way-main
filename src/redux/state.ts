@@ -27,7 +27,7 @@ export type DialogType = {
   avatar?: string
 }
 export type MessageType = {
-  id: number
+  id: string
   message: string
 }
 
@@ -73,10 +73,10 @@ const state = {
       },
     ],
     messagesData: [
-      {id: 1, message: "First comment!"},
-      {id: 2, message: "How are you?"},
-      {id: 3, message: "Fine!"},
-      {id: 4, message: "Yo"},
+      {id: v1(), message: "First comment!"},
+      {id: v1(), message: "How are you?"},
+      {id: v1(), message: "Fine!"},
+      {id: v1(), message: "Yo"},
     ]
   },
   sidebar: {
@@ -99,9 +99,14 @@ const state = {
     ]
   }
 }
-export default state
 export const addPost = (newTextToPost: string) => {
-  const newPost = {id: v1(), message: newTextToPost, likeCount: 0}
+  const newPost: PostType = {id: v1(), message: newTextToPost, likeCount: 0}
   state.profilePage.posts.push(newPost)
   renderTree(state)
 }
+export const addMessage = (newTextToMessage: string) => {
+  const newMessage: MessageType = {id: v1(), message: newTextToMessage}
+  state.dialogsPage.messagesData.push(newMessage)
+  renderTree(state)
+}
+export default state
