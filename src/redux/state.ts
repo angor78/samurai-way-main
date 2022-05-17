@@ -1,7 +1,7 @@
 //REDUX
 
 import {v1} from "uuid";
-import {renderTree} from "../index";
+import {renderTree} from "../renderTree";
 
 export type StatePropsType = {
   profilePage: ProfilePageType
@@ -10,10 +10,12 @@ export type StatePropsType = {
 
 export type ProfilePageType = {
   posts: Array<PostType>
+  newTextPost:string
 }
 export type DialogsPageType = {
   dialogsData: Array<DialogType>
   messagesData: Array<MessageType>
+  newTextMessage:string
 }
 
 export type PostType = {
@@ -34,12 +36,14 @@ export type MessageType = {
 const state = {
 
   profilePage: {
+    newTextPost:'',
     posts: [
       {id: v1(), message: 'Hi, how a yo?', likeCount: 12},
       {id: v1(), message: "It's my first yo.", likeCount: 1},
     ]
   },
   dialogsPage: {
+    newTextMessage:'',
     dialogsData: [
       {
         id: 1,
@@ -99,14 +103,22 @@ const state = {
     ]
   }
 }
-export const addPost = (newTextToPost: string) => {
-  const newPost: PostType = {id: v1(), message: newTextToPost, likeCount: 0}
+export const addPost = (textToPost:string) => {
+  const newPost: PostType = {id: v1(), message: textToPost, likeCount: 0}
   state.profilePage.posts.push(newPost)
   renderTree(state)
 }
 export const addMessage = (newTextToMessage: string) => {
   const newMessage: MessageType = {id: v1(), message: newTextToMessage}
   state.dialogsPage.messagesData.push(newMessage)
+  renderTree(state)
+}
+export const changeTextPost = (postText:string) => {
+  state.profilePage.newTextPost = postText
+  renderTree(state)
+}
+export const changeTextMessage = (textMessage: string) => {
+  state.dialogsPage.newTextMessage=textMessage
   renderTree(state)
 }
 export default state
