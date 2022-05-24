@@ -1,7 +1,21 @@
 import React from 'react';
 import './index.css';
-import state from "./redux/state";
-import {renderTree} from "./renderTree";
+import store from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
 
+let renderTree = () => {
+  let state = store.getState()
 
-renderTree(state)
+  ReactDOM.render(
+    <App state={state}
+         addPost={store.addPost.bind(store)}
+         addMessage={store.addMessage.bind(store)}
+         changeTextPost={store.changeTextPost.bind(store)}
+         changeTextMessage={store.changeTextMessage.bind(store)}/>,
+    document.getElementById('root')
+  );
+}
+
+store.subscriber(renderTree)
+renderTree()

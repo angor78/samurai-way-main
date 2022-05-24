@@ -38,7 +38,7 @@ const Dialogs = (props: DialogsPropsType) => {
           {messagesElements}
         </ul>
         <div>
-          <textarea onChange={onChangeMessageHandler}></textarea>
+          <textarea onChange={onChangeMessageHandler} value={props.dialogsPage.newTextMessage}/>
           <button onClick={onClickAddMessageHandler}>add message</button>
         </div>
       </div>

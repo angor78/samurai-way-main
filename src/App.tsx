@@ -20,6 +20,7 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
+
   return (
     <BrowserRouter>
       <div className="app-wrap">
@@ -47,7 +48,6 @@ function App(props: AppPropsType) {
           </Routes>
         </div>
       </div>
-
     </BrowserRouter>
   );
 }
