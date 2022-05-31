@@ -8,19 +8,18 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {StatePropsType} from "./redux/state";
+import {
+  ActionTypes,
+  StatePropsType
+} from "./redux/state";
 
 
 type AppPropsType = {
   state: StatePropsType
-  addPost: (textToPost: string) => void
-  addMessage: (newTextToMessage: string) => void
-  changeTextPost: (postText: string) => void
-  changeTextMessage: (textMessage: string) => void
+  dispatch: (action: ActionTypes) => void
 }
 
 function App(props: AppPropsType) {
-
   return (
     <BrowserRouter>
       <div className="app-wrap">
@@ -31,16 +30,15 @@ function App(props: AppPropsType) {
             <Route path={"/dialogs"}
                    element={<Dialogs
                      dialogsPage={props.state.dialogsPage}
-                     addMessage={props.addMessage}
-                     changeTextMessage={props.changeTextMessage}
-                     newTextMessage={props.state.dialogsPage.newTextMessage}/>}/>
-
+                     dispatch={props.dispatch}
+                     newTextMessage={props.state.dialogsPage.newTextMessage}
+                   />}/>
             <Route path={"/profile"}
                    element={<Profile
                      profilePage={props.state.profilePage}
-                     addPost={props.addPost}
-                     changeTextPost={props.changeTextPost}
-                     newPostText={props.state.profilePage.newTextPost}/>}/>
+                     dispatch={props.dispatch}
+                     newPostText={props.state.profilePage.newTextPost}
+                   />}/>
 
             <Route path={"/music"} element={<Music/>}/>
             <Route path={"/news"} element={<News/>}/>
@@ -51,5 +49,4 @@ function App(props: AppPropsType) {
     </BrowserRouter>
   );
 }
-
 export default App;
