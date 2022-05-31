@@ -9,10 +9,8 @@ let renderTree = () => {
 
   ReactDOM.render(
     <App state={state}
-         addPost={store.addPost.bind(store)}
-         addMessage={store.addMessage.bind(store)}
-         changeTextPost={store.changeTextPost.bind(store)}
-         changeTextMessage={store.changeTextMessage.bind(store)}/>,
+         dispatch={store.dispatch.bind(store)}
+    />,
     document.getElementById('root')
   );
 }
