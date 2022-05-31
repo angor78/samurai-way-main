@@ -1,6 +1,10 @@
 import {v1} from "uuid";
-import {addPostActionCreator, changeTextPostActionCreator, profileReduser} from "./profile-reduser";
-import {addMessageActionCreator, changeTextMessageActionCreator, dialogsReduser} from "./dialogs-reduser";
+import {addPostActionCreator, changeTextPostActionCreator, profileReducer} from "./profile-reducer";
+import {
+  addMessageActionCreator,
+  changeTextMessageActionCreator,
+  dialogsReducer,
+} from "./dialogs-reducer";
 
 export type StoreType = {
   _state: StatePropsType
@@ -113,8 +117,8 @@ let store: StoreType = {
   },
 
   dispatch(action) {
-    this._state.profilePage = profileReduser(this._state.profilePage, action)
-    this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action)
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
     this._callSubscriber()
   },
 }

@@ -5,7 +5,7 @@ import {
   ActionTypes,
   PostType
 } from "../../../redux/state";
-import {addPostActionCreator, changeTextPostActionCreator} from "../../../redux/profile-reduser";
+import {addPostActionCreator, changeTextPostActionCreator} from "../../../redux/profile-reducer";
 
 
 type MyPostsPropsType = {

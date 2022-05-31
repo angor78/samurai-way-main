@@ -5,7 +5,7 @@ import {ActionTypes, DialogsPageType, MessageType} from "./state";
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE'
 
-export const dialogsReduser = (state: DialogsPageType, action: ActionTypes) => {
+export const dialogsReducer = (state: DialogsPageType, action: ActionTypes) => {
   switch (action.type) {
     case ADD_MESSAGE:
       const newMessage: MessageType = {id: v1(), message: action.newTextMessage}

@@ -6,7 +6,7 @@ const ADD_POST = 'ADD-POST'
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 
 
-export const profileReduser = (state: ProfilePageType, action: ActionTypes) => {
+export const profileReducer = (state: ProfilePageType, action: ActionTypes) => {
   switch (action.type) {
     case ADD_POST:
       let newPost = {id: v1(), message: action.newTextPost, likeCount: 0}
