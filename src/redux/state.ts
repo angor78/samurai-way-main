@@ -1,15 +1,13 @@
-
 import {v1} from "uuid";
+import {addPostActionCreator, changeTextPostActionCreator, profileReduser} from "./profile-reduser";
+import {addMessageActionCreator, changeTextMessageActionCreator, dialogsReduser} from "./dialogs-reduser";
 
 export type StoreType = {
   _state: StatePropsType
   getState: () => StatePropsType
-  addPost: (newTextPost: string) => void
-  changeTextPost: (postText: string) => void
-  addMessage: (newTextMessage: string) => void
-  changeTextMessage: (textMessage: string) => void
+  dispatch: (action: ActionTypes) => void
   subscriber: (observer: () => void) => void
-  _rerender: () => void
+  _callSubscriber: () => void
 }
 
 export type StatePropsType = {
@@ -43,6 +41,15 @@ export type MessageType = {
 }
 
 
+export type AddPostActionType = ReturnType<typeof addPostActionCreator>
+export type ChangeTextPostActionType = ReturnType<typeof changeTextPostActionCreator>
+export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
+export type ChangeTextMessageActionType = ReturnType<typeof changeTextMessageActionCreator>
+export type ActionTypes =
+  AddPostActionType
+  | ChangeTextPostActionType
+  | AddMessageActionType
+  | ChangeTextMessageActionType
 let store: StoreType = {
   _state: {
     profilePage: {
@@ -95,35 +102,21 @@ let store: StoreType = {
     },
 
   },
-  getState() {return this._state},
-  _rerender() {
+  getState() {
+    return this._state
+  },
+  _callSubscriber() {
     console.log("render")
   },
-  subscriber(observer:any) {
-    this._rerender = observer
+  subscriber(observer: any) {
+    this._callSubscriber = observer
   },
-  addPost(newTextPost: string) {
-    let newPost = {id: v1(), message: newTextPost, likeCount: 0}
 
-    this._state.profilePage.posts.push(newPost)
-    this._state.profilePage.newTextPost = ''
-    this._rerender()
-  },
-  changeTextPost(postText: string) {
-    this._state.profilePage.newTextPost = postText
-    this._rerender()
-  },
-  addMessage(newTextMessage: string) {
-    const newMessage: MessageType = {id: v1(), message: newTextMessage}
-    this._state.dialogsPage.messagesData.push(newMessage)
-    this._state.dialogsPage.newTextMessage = ''
-    this._rerender()
-  },
-  changeTextMessage(textMessage: string) {
-    this._state.dialogsPage.newTextMessage = textMessage
-    this._rerender()
+  dispatch(action) {
+    this._state.profilePage = profileReduser(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action)
+    this._callSubscriber()
   },
 }
-
 
 export default store
