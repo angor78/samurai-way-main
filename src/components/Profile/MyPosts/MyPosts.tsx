@@ -1,27 +1,31 @@
 import React, {ChangeEvent} from "react";
 import Post from "./Post/Post"
 import s from "./MyPosts.module.css"
-import {PostType} from "../../../redux/state";
+import {
+  ActionTypes,
+  PostType
+} from "../../../redux/state";
+import {addPostActionCreator, changeTextPostActionCreator} from "../../../redux/profile-reduser";
 
 
 type MyPostsPropsType = {
   posts: Array<PostType>
-  addPost: (textToPost:string) => void
-  changeTextPost:(postText:string)=>void
-  newPostText:string
+  dispatch: (action: ActionTypes) => void
+  newPostText: string
 }
+
 const MyPosts = (props: MyPostsPropsType) => {
 
-  let postsElements = props.posts.map(p =><span key={p.id}>{
+  let postsElements = props.posts.map(p => <span key={p.id}>{
     <Post id={p.id} message={p.message} likeCount={p.likeCount}/>
-  }</span> )
+  }</span>)
 
 
   const onClickAddPostHandler = () => {
-    props.addPost(props.newPostText)
+    props.dispatch(addPostActionCreator(props.newPostText))
   }
-  const onChangePostHandle = (e:ChangeEvent<HTMLTextAreaElement>) => {
-    props.changeTextPost(e.currentTarget.value)
+  const onChangePostHandle = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.dispatch(changeTextPostActionCreator(e.currentTarget.value))
   }
   return (<div className={s.content}>
     <h3>My posts</h3>
