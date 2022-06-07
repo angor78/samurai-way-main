@@ -5,7 +5,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {
   ActionTypes,
   ProfilePageType
-} from "../../redux/state";
+} from "../../redux/store";
 
 
 export type ProfilePropsType = {
