@@ -1,10 +1,7 @@
 import {v1} from "uuid";
+import {addMessageActionCreator, changeTextMessageActionCreator, dialogsReducer} from "./dialogs-reducer";
 import {addPostActionCreator, changeTextPostActionCreator, profileReducer} from "./profile-reducer";
-import {
-  addMessageActionCreator,
-  changeTextMessageActionCreator,
-  dialogsReducer,
-} from "./dialogs-reducer";
+
 
 export type StoreType = {
   _state: StatePropsType
