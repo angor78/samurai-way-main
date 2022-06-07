@@ -4,7 +4,7 @@ import s from "./MyPosts.module.css"
 import {
   ActionTypes,
   PostType
-} from "../../../redux/state";
+} from "../../../redux/store";
 import {addPostActionCreator, changeTextPostActionCreator} from "../../../redux/profile-reducer";
 
 
