@@ -1,51 +1,26 @@
-import React, {ChangeEvent} from "react";
-import s from "./Dialogs.module.css"
-import {DialogItem} from "./DialogItem/DialogItem";
-import {Message} from "./Message/Message";
-import {
-  ActionTypes,
-  DialogsPageType,
-} from "../../redux/store";
-import {addMessageActionCreator, changeTextMessageActionCreator} from "../../redux/dialogs-reducer";
+import React from "react";
 
-type DialogsPropsType = {
-  dialogsPage: DialogsPageType
-  dispatch: (action: ActionTypes) => void
-  newTextMessage: string
+import { StoreType} from "../../redux/store";
+import {addMessageActionCreator, changeTextMessageActionCreator} from "../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
+
+type DialogsContainerPropsType = {
+  store: StoreType
 }
 
 
-const DialogsContainer = (props: DialogsPropsType) => {
-
-  let messagesElements = props.dialogsPage.messagesData.map(m =>
-    <li key={m.id}>{<Message message={m.message} id={m.id}/>}</li>)
-
-  let dialogsElements = props.dialogsPage.dialogsData.map(d =>
-    <span key={d.id}>
-            {<DialogItem name={d.name} id={d.id} avatar={d.avatar}/>}
-          </span>)
+const DialogsContainer = (props: DialogsContainerPropsType) => {
+  let state = props.store.getState()
 
   const onClickAddMessageHandler = () => {
-    props.dispatch(addMessageActionCreator(props.newTextMessage))
+    props.store.dispatch(addMessageActionCreator(state.dialogsPage.newTextMessage))
   }
-  const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(changeTextMessageActionCreator(e.currentTarget.value))
+  const onChangeMessageHandler = (text:string) => {
+    props.store.dispatch(changeTextMessageActionCreator(text))
   }
-  return (
-    <div className={s.dialogs}>
-      <div className={s.dialogsItem}>
-        {dialogsElements}
-      </div>
-      <div className={s.messages}>
-        <ul>
-          {messagesElements}
-        </ul>
-        <div>
-          <textarea onChange={onChangeMessageHandler} value={props.dialogsPage.newTextMessage}/>
-          <button onClick={onClickAddMessageHandler}>add message</button>
-        </div>
-      </div>
-    </div>
-  )
+  return <Dialogs dialogsPage={state.dialogsPage}
+                  addMessage={onClickAddMessageHandler}
+                  changeMessageText={onChangeMessageHandler}
+                  newTextMessage={state.dialogsPage.newTextMessage}/>
 }
 export default DialogsContainer

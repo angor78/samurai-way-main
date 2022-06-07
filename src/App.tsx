@@ -3,12 +3,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Profile from "./components/Profile/Profile";
 import "./App.css"
-import Dialogs from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {StoreType} from "./redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppPropsType = {
@@ -24,17 +24,11 @@ function App(props: AppPropsType) {
         <div className="app-wrap-content">
           <Routes>
             <Route path={"/dialogs"}
-                   element={<Dialogs
-                     // dialogsPage={props.state.dialogsPage}
-                     // dispatch={props.dispatch}
-                     // newTextMessage={props.state.dialogsPage.newTextMessage}
+                   element={<DialogsContainer
                      store={props.store}
                    />}/>
             <Route path={"/profile"}
                    element={<Profile
-                     // profilePage={props.state.profilePage}
-                     // dispatch={props.dispatch}
-                     // newPostText={props.state.profilePage.newTextPost}
                      store={props.store}
                    />}/>
 
@@ -47,4 +41,5 @@ function App(props: AppPropsType) {
     </BrowserRouter>
   );
 }
+
 export default App;
