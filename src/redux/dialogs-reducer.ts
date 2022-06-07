@@ -1,11 +1,11 @@
 import {v1} from "uuid";
-import {ActionTypes, DialogsPageType, MessageType} from "./store";
+import {ActionTypes, MessageType} from "./store";
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE'
 
-let initialState:DialogsPageType = {
+let initialState = {
   newTextMessage: '',
   dialogsData: [
     {

@@ -2,16 +2,15 @@ import React, {ChangeEvent} from "react";
 import Post from "./Post/Post"
 import s from "./MyPosts.module.css"
 import {
-  ActionTypes,
   PostType
 } from "../../../redux/store";
-import {addPostActionCreator, changeTextPostActionCreator} from "../../../redux/profile-reducer";
 
 
 type MyPostsPropsType = {
   posts: Array<PostType>
-  dispatch: (action: ActionTypes) => void
   newPostText: string
+  changePost:(text:string)=>void
+  addPost:(text:string)=>void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -20,12 +19,11 @@ const MyPosts = (props: MyPostsPropsType) => {
     <Post id={p.id} message={p.message} likeCount={p.likeCount}/>
   }</span>)
 
-
   const onClickAddPostHandler = () => {
-    props.dispatch(addPostActionCreator(props.newPostText))
+    props.addPost(props.newPostText)
   }
   const onChangePostHandle = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(changeTextPostActionCreator(e.currentTarget.value))
+    props.changePost(e.currentTarget.value)
   }
   return (<div className={s.content}>
     <h3>My posts</h3>
