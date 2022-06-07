@@ -6,7 +6,6 @@ import App from "./App";
 
 let renderTree = () => {
   let state = store.getState()
-
   ReactDOM.render(
     <App state={state}
          dispatch={store.dispatch.bind(store)}
@@ -15,5 +14,6 @@ let renderTree = () => {
   );
 }
 
-store.subscriber(renderTree)
+//store.subscriber(()=>renderTree())
+store.subscribe(()=>renderTree())
 renderTree()
