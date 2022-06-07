@@ -11,7 +11,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {
   ActionTypes,
   StatePropsType
-} from "./redux/state";
+} from "./redux/store";
 
 
 type AppPropsType = {
