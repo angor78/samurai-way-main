@@ -1,4 +1,4 @@
-.dialogs{
+.image {
     min-width: 100%;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('https://u.livelib.ru/reader/LoraDora/o/iyogfg29/o-o.jpeg');
@@ -6,4 +6,8 @@
     background-position: center;
     height: 700px;
     text-align: center;
+}
+
+.image::-webkit-scrollbar {
+    width: 0;
 }

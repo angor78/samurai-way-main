@@ -6,11 +6,12 @@ import App from "./App";
 
 let renderTree = () => {
   ReactDOM.render(
-    <App store={store}
-    />,
-    document.getElementById('root')
-  );
+      <App store={store}
+  />,
+  document.getElementById('root')
+)
+  ;
 }
 
-store.subscribe(()=>renderTree())
+store.subscribe(() => renderTree())
 renderTree()

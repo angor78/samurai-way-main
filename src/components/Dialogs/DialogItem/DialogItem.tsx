@@ -1,22 +1,25 @@
-import s from "../Dialogs.module.css";
-import {NavLink} from "react-router-dom";
 import React from "react";
 import {DialogType} from "../../../redux/store";
+import {Box} from "@chakra-ui/react";
 
 
 export const DialogItem = (props: DialogType) => {
-  let path = "/dialogs/" + props.id
+  //let path = "/dialogs/" + props.id
   return (
-    <div className={s.dialog + ' ' + s.active}>
-      <NavLink to={path} style={isActive => ({
-        color: isActive ? "orangered" : "orange",
-        textDecoration: "none"
-      })}>
-        <div className={s.item}>
-          <img src={props.avatar}  alt={'ava'}/>
-          <span>{props.name}</span>
-        </div>
-      </NavLink>
-    </div>
+
+    <Box bg='blue.300' w='100%' p={4} color='white'>
+      {/*<NavLink to={path} style={isActive => ({*/}
+      {/*  color: isActive ? "teal" : "white",*/}
+      {/*  textDecoration: "none"*/}
+      {/*})}>*/}
+
+        <Box>
+            {props.name}
+        </Box>
+
+      {/*</NavLink>*/}
+    </Box>
+
+
   )
 }
