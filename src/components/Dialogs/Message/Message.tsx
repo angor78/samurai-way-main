@@ -1,6 +1,6 @@
 import React from "react";
-import {MessageType} from "../../../redux/store";
 import {Box} from "@chakra-ui/react";
+import {MessageType} from "../../../redux/storeTypes";
 
 
 export const Message = (props: MessageType) => {
