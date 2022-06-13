@@ -1,7 +1,7 @@
 import React from "react";
-import {PostType} from "../../../../redux/store";
 import {StarIcon} from "@chakra-ui/icons";
 import {Badge, Box} from "@chakra-ui/react";
+import {PostType} from "../../../../redux/storeTypes";
 
 
 function Post(props: PostType) {
