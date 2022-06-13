@@ -1,6 +1,6 @@
 import React from "react";
-import {DialogType} from "../../../redux/store";
 import {Box} from "@chakra-ui/react";
+import {DialogType} from "../../../redux/storeTypes";
 
 
 export const DialogItem = (props: DialogType) => {
