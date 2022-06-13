@@ -1,10 +1,10 @@
 import {v1} from "uuid";
-import {ActionTypes, MessageType} from "./store";
+import {ActionTypes, DialogType, MessageType} from "./storeTypes";
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE'
-
+export type InitialStateType = typeof initialState
 let initialState = {
   newTextMessage: '',
   dialogsData: [
@@ -38,31 +38,31 @@ let initialState = {
       name: "Frosia",
       avatar: "https://catherineasquithgallery.com/uploads/posts/2021-02/1612252010_47-p-samurai-na-fioletovom-fone-78.jpg"
     },
-  ],
+  ] as Array<DialogType>,
   messagesData: [
     {id: v1(), message: "First comment!"},
     {id: v1(), message: "How are you?"},
     {id: v1(), message: "Fine!"},
     {id: v1(), message: "Yo"},
-  ]
+  ] as Array<MessageType>
 }
-export const dialogsReducer = (state=initialState, action: ActionTypes) => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
   switch (action.type) {
     case ADD_MESSAGE:
-      const newMessage: MessageType = {id: v1(), message: action.newTextMessage}
+      const newMessage: MessageType = {id: v1(), message: state.newTextMessage}
       state.messagesData.push(newMessage)
       state.newTextMessage = ''
-      return state
+      return {...state}
     case CHANGE_TEXT_MESSAGE:
       state.newTextMessage = action.textMessage
-      return state
+      return {...state}
     default:
       return state
   }
 }
 
-export const addMessageActionCreator = (newTextMessage: string) => {
-  return {type: 'ADD-MESSAGE', newTextMessage: newTextMessage} as const
+export const addMessageActionCreator = () => {
+  return {type: 'ADD-MESSAGE'} as const
 }
 export const changeTextMessageActionCreator = (textMessage: string) => {
   return {type: 'CHANGE-TEXT-MESSAGE', textMessage: textMessage} as const
