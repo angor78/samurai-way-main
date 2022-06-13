@@ -2,15 +2,9 @@ import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "../../redux/store";
 import {Box, Button, Input} from "@chakra-ui/react";
+import {DialogsPropsType} from "./DialogsContainer";
 
-type DialogsPropsType = {
-  dialogsPage: DialogsPageType
-  newTextMessage: string
-  addMessage: () => void
-  changeMessageText: (text: string) => void
-}
 
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -34,7 +28,7 @@ const Dialogs = (props: DialogsPropsType) => {
     props.changeMessageText(e.currentTarget.value)
   }
   return (
-    <Box display={'flex'}  className={s.dialogs} padding={'100'}>
+    <Box display={'flex'}  className={s.dialogs} paddingTop={'150'} paddingLeft={'450'} >
       <Box display={'block'} >
         {dialogsElements}
       </Box>
