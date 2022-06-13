@@ -15,7 +15,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
     props.changePost(e.currentTarget.value)
   }
   return (
-    <Box textAlign={'center'}>
+    <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
       <Box float={'right'}>
         <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
         <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
