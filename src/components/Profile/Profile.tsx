@@ -1,37 +1,23 @@
 import React from "react";
 import "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {StoreType} from "../../redux/store";
 import {Box} from "@chakra-ui/react";
-import {addPostActionCreator, changeTextPostActionCreator} from "../../redux/profile-reducer";
+import MyPosts from "./MyPosts/MyPosts";
+import {ProfilePropsType} from "./ProfileContainer";
 
 
-export type ProfilePropsType = {
-  store: StoreType
-}
 const Profile = (props: ProfilePropsType) => {
-  let state = props.store.getState()
-  const onClickAddPostHandler = () => {
-    props.store.dispatch(addPostActionCreator(state.profilePage.newTextPost))
-  }
-  const onChangePostHandle = (text: string) => {
-    props.store.dispatch(changeTextPostActionCreator(text))
-  }
   return (
     <Box display={'flex'}>
-      <Box float={'left'}>
-        <MyPostsContainer
-          // posts={props.profilePage.posts}
-          // dispatch={props.dispatch}
-          // newPostText={props.newPostText}
-          store={props.store}
+      <Box float={'left'} mt={'10'}>
+        <MyPosts
+          posts={props.profilePage.posts}
         />
       </Box>
       <Box maxW={'300'} float={'right'} p={'10'}>
-        <ProfileInfo addPost={onClickAddPostHandler}
-                     newPostText={state.profilePage.newTextPost}
-                     changePost={onChangePostHandle}/>
+        <ProfileInfo addPost={props.addPost}
+                     newPostText={props.profilePage.newTextPost}
+                     changePost={props.changePost}/>
       </Box>
     </Box>
 
