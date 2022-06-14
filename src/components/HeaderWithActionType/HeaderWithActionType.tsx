@@ -66,7 +66,7 @@ export default function HeaderWithAction() {
                   }
                 />
               </MenuButton>
-              <MenuList>
+              <MenuList color={"teal"}>
                 <MenuItem>
                   <Link href='https://github.com/angor78' isExternal>
                     GIT <ExternalLinkIcon mx='2px'/>
