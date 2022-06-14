@@ -9,6 +9,7 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import HeaderWithAction from "./components/HeaderWithActionType/HeaderWithActionType";
 import {MainImage} from "./components/MainImage/MainImage";
 import {ProfileContainer} from "./components/Profile/ProfileContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path="/main" element={<MainImage/>}/>
             <Route path={"/dialogs"}
                    element={<DialogsContainer/>}/>
+            <Route path={"/users"}
+                   element={<UsersContainer/>}/>
             <Route path={"/profile"}
                    element={<ProfileContainer/>}/>
             <Route path={"/music"} element={<Music/>}/>
