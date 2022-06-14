@@ -7,7 +7,7 @@ const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 
 export type initialProfileStateType = {
   newTextPost: string
-  posts: Array<{id: string, message: string, likeCount: number}>
+  posts: Array<{ id: string, message: string, likeCount: number }>
 
 }
 
@@ -17,26 +17,25 @@ let initialState = {
     {id: v1(), message: "It's my first yo.", likeCount: 1},
     {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1},
     {id: v1(), message: "It's my first yo.", likeCount: 1},
-    {id: v1(), message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n', likeCount: 12},
+    {
+      id: v1(),
+      message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n',
+      likeCount: 12
+    },
 
-  ]as Array<PostType>
+  ] as Array<PostType>
 }
 
 
-
-export const profileReducer = (state:initialProfileStateType = initialState, action:ActionTypes):initialProfileStateType => {
+export const profileReducer = (state: initialProfileStateType = initialState, action: ActionTypes): initialProfileStateType => {
   switch (action.type) {
-    case ADD_POST: {
+    case ADD_POST:
       let newPost = {id: v1(), message: state.newTextPost, likeCount: 0}
-      let stateCopy = {...state, posts: [newPost, ...state.posts]}
-      stateCopy.newTextPost = ''
-      return stateCopy
-    }
-    case CHANGE_TEXT_POST: {
-      const stateCopy = {...state}
-      stateCopy.newTextPost = action.postText
-      return stateCopy
-    }
+      return {...state, newTextPost: '', posts: [newPost, ...state.posts]}
+
+    case CHANGE_TEXT_POST:
+      return {...state, newTextPost: action.postText}
+
     default:
       return state
   }
