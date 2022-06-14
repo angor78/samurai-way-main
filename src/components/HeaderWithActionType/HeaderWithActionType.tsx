@@ -45,6 +45,7 @@ export default function HeaderWithAction() {
               spacing={6}
               display={{base: 'none', md: 'flex'}}>
               <NavLink className={s.Navlink} to={"/profile"}>Profile</NavLink>
+              <NavLink className={s.Navlink} to={"/users"}>Users</NavLink>
               <NavLink className={s.Navlink} to={"/dialogs"}>Messages</NavLink>
               <NavLink className={s.Navlink} to={"/news"}>News</NavLink>
               <NavLink className={s.Navlink} to={"/music"}>Musik</NavLink>
