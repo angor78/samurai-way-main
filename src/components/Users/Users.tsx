@@ -1,89 +1,99 @@
 import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
-import {Badge, Box, Button, Center, Divider, FormControl, FormLabel, Input, Select} from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Button,
+  Center,
+  Divider,
+  FormControl,
+  FormLabel, IconButton,
+  Input,
+  Select,
+  Wrap,
+  WrapItem
+} from "@chakra-ui/react";
 import {Image} from '@chakra-ui/react'
+import {SearchIcon} from "@chakra-ui/icons";
+import axios from "axios";
 
 
 export const Users = (props: UsersPropsType) => {
 
+  const getUsers = () => {
+    if(props.usersPage.users.length===0){
+      axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
+        props.setUsers(response.data.items)
+      })
+    }
+  }
   return (
-    <Center>
+    <Wrap spacing='30px' display={"flex"} flexWrap={'wrap'}>
+      <WrapItem minWidth={'350'}
+                width={'70%'}
+                display={"flex"}
+                overflow='hidden'>
+        <Center display={'inline-block'}>
+          {props.usersPage.users.map(u =>
+            <Box margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'}>
+              <Box display='block' alignItems='center' verticalAlign={'middle'} flexDirection={'row'}>
+                <Image src={u.photos.small!=null?u.photos.small:'https://cdn-icons-png.flaticon.com/512/560/560216.png'} alt='Dan Abramov' boxSize='50px' objectFit='cover' display={'inline-block'}/>
+                <Box as='span' color='gray.600' fontSize='lg' p={'5'} display={'inline-block'} verticalAlign={'top'}
+                     pt={'5'} pl={'5'}>
+                  {u.name}
+                </Box>
+                <Box float={'right'}>
+                  {u.followed ?
+                    <Button display={'block'} float={'right'} colorScheme='teal' size='sm'
+                            onClick={() => props.unfollow(u.id)}>Unfollow</Button>
+                    : <Button colorScheme='blue' size='sm' onClick={() => props.follow(u.id)}>Follow</Button>}
+                </Box>
+              </Box>
 
-      <Box display={'flex'} p={'10'} overflow={'hidden'} alignItems={'top'} flexWrap={'wrap'} justifyContent={'center'}>
-        {props.usersPage.users.map(u =>
-          <Box margin={3} minWidth={'200'} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5px 10px'}>
-            <Box display='flex' alignItems='center' flexDirection={'row'}>
-              <Image src={u.photoUrl} alt='Dan Abramov' boxSize='50px' objectFit='cover' display={'inline-block'}/>
-              <Box as='span' color='gray.600' fontSize='lg' p={'5'}>
-                {u.fullName}
+              <Box display='flex' alignItems='baseline'>
+                <Badge borderRadius='full' px='2' colorScheme='teal'>
+                  status: {u.status}
+                </Badge>
               </Box>
+              <Divider orientation='horizontal' mt={'3'} mb={'2'}/>
               <Box>
-                {u.followed ?
-                  <Button colorScheme='teal' size='sm' onClick={() => props.unfollow(u.id)}>Unfollow</Button>
-                  : <Button colorScheme='blue' size='sm' onClick={() => props.follow(u.id)}>Follow</Button>}
+                <Badge borderRadius='full' px='2' colorScheme='blue'>
+                  Description:
+                </Badge>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci corporis culpa ducimus est
+                iusto libero maxime minima neque nihil, nobis officiis porro praesentium, quis, sapiente similique sint
+                vel
+                voluptatem? Laborum.
+              </Box>
+              <Divider orientation='horizontal' mt={'3'}/>
+              <Box as='span' color='gray.600' fontSize='sm' float={'right'}>
+                {"Solar system"}
+              </Box>
+              <Box as='span' color='gray.600' fontSize='sm' float={'right'}>
+                {"The Earth"}/
               </Box>
             </Box>
-            <Box display='flex' alignItems='baseline'>
-              <Badge borderRadius='full' px='2' colorScheme='teal'>
-                status: {u.status}
-              </Badge>
-            </Box>
-            <Box>
-              Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci corporis culpa ducimus est
-              iusto libero maxime minima neque nihil, nobis officiis porro praesentium, quis, sapiente similique sint
-              vel
-              voluptatem? Laborum.
-            </Box>
-            <Divider orientation='horizontal' mt={'3'}/>
-            <Box as='span' color='gray.600' fontSize='sm' float={'right'}>
-              {u.location.city}
-            </Box>
-          </Box>
-        )}
-      </Box>
-      <FormControl minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden' mr={10} alignItems={'top'}>
-        <FormLabel htmlFor='first-name'>Find user...</FormLabel>
-        <Input id='first-name' placeholder='Find user...'/>
-        <FormLabel htmlFor='country'>Country</FormLabel>
-        <Select id='country' placeholder='Select country'>
-          <option>Russia</option>
-          <option>Belarus</option>
-        </Select>
-      </FormControl>
-    </Center>
+          )}
+        </Center>
+      </WrapItem>
+      <WrapItem>
+        <Center mt={'10px'}>
+          <FormControl minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
+                       alignItems={'top'}>
+            <FormLabel htmlFor='first-name'>Find user...</FormLabel>
+            <Input id='first-name' placeholder='Enter name...'/>
+            <FormLabel htmlFor='country'>Country</FormLabel>
+            <Select id='country' placeholder='Select country'>
+              <option>Russia</option>
+              <option>Belarus</option>
+            </Select>
+            <IconButton  mt={'5'} float={'right'} aria-label='Search database' icon={<SearchIcon />} />
+            <Button onClick={getUsers}>Users</Button>
+
+          </FormControl>
+        </Center>
+      </WrapItem>
+    </Wrap>
   )
 }
 
-
-// <header>
-// <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture"
-//        className="profile-thumbnail">
-//     <div className="profile-name">
-//       <h3>Quincy Larson</h3>
-//       <h4>@ossia</h4>
-//     </div>
-//     <div className="follow-btn">
-//       <button>Follow</button>
-//     </div>
-// </header>
-// <div id="inner">
-//   <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart,
-//     you still have to work hard.</p>
-//   <span className="date">1:32 PM - 12 Jan 2018</span>
-//   <hr>
-// </div>
-// <footer>
-//   <div className="stats">
-//     <div className="Retweets">
-//       <strong>107</strong> Retweets
-//     </div>
-//     <div className="likes">
-//       <strong>431</strong> Likes
-//     </div>
-//   </div>
-//   <div className="cta">
-//     <button className="share-btn">Share</button>
-//     <button className="retweet-btn">Retweet</button>
-//     <button className="like-btn">Like</button>
-//   </div>
-// </footer>

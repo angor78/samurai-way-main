@@ -1,60 +1,43 @@
 import {ActionTypes} from "./storeTypes";
-import {v1} from "uuid";
+
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
 
 export type UserType = {
-  id: string
-  fullName: string
-  status: string
-  location: { country: string, city: string }
-  followed: boolean
-  photoUrl:string
+  name: string,
+  id: number,
+  uniqueUrlName: string,
+  photos:
+    {
+      small: string,
+      large: string,
+    }
+  status: string,
+  followed: boolean,
 }
 
 export type initialUsersStateType = {
   users: Array<UserType>
 }
 
+
 let initialState = {
-  users: [
-    {
-      id: v1(),
-      followed: false,
-      fullName: 'Andrey',
-      status: 'Status here...',
-      location: {country: 'Russia', city: 'Penza'},
-      photoUrl:'https://cdn-icons-png.flaticon.com/512/3237/3237472.png'
-    },
-    {
-      id: v1(),
-      followed: true,
-      fullName: 'Evgen',
-      status: 'Status here...',
-      location: {country: 'Belarus', city: 'Bobruisk'},
-      photoUrl:'https://cdn-icons-png.flaticon.com/512/3237/3237472.png'
-
-    },
-    {
-      id: v1(),
-      followed: false,
-      fullName: 'Fara',
-      status: 'Status here...',
-      location: {country: 'Kazakhstan', city: 'Temirtay'},
-      photoUrl:'https://cdn-icons-png.flaticon.com/512/3237/3237472.png'
-
-    },
-    {
-      id: v1(),
-      followed: true,
-      fullName: 'Iliya',
-      status: 'Status here...',
-      location: {country: 'Russia', city: 'Mias'},
-      photoUrl:'https://cdn-icons-png.flaticon.com/512/3237/3237472.png'
-    },
-  ] as Array<UserType>
+  users:
+    [
+      // {
+      //   name: 'Andrey',
+      //   id: 1,
+      //   uniqueUrlName: 'string',
+      //   photos: {
+      //     small: 'https://cdn-icons-png.flaticon.com/512/560/560216.png',
+      //     large: 'https://cdn-icons-png.flaticon.com/512/560/560216.png',
+      //   },
+      //   status: 'Status here...',
+      //   followed: false,
+      // },
+    ] as Array<UserType>
 }
 
 
@@ -80,12 +63,12 @@ export const usersReducer = (state: initialUsersStateType = initialState, action
 }
 
 export type followACType = ReturnType<typeof followAC>
-export const followAC = (userID: string) => {
+export const followAC = (userID: number) => {
   return {type: FOLLOW, userID} as const
 }
 
 export type unfollowACType = ReturnType<typeof unfollowAC>
-export const unfollowAC = (userID: string) => {
+export const unfollowAC = (userID: number) => {
   return {type: UNFOLLOW, userID} as const
 }
 
