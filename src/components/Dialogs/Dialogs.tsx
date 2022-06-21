@@ -28,15 +28,15 @@ const Dialogs = (props: DialogsPropsType) => {
     props.changeMessageText(e.currentTarget.value)
   }
   return (
-    <Box display={'flex'}  className={s.dialogs} paddingTop={'150'} paddingLeft={'450'} >
-      <Box display={'block'} >
+    <Box display={'flex'}  className={s.dialogs}  >
+      <Box display={'block'}  >
         {dialogsElements}
       </Box>
       <Box>
         {messagesElements}
         <Box>
           <Input placeholder='New message...' onChange={onChangeMessageHandler}
-                    value={props.dialogsPage.newTextMessage} color={'white'}/>
+                    value={props.dialogsPage.newTextMessage} color={'teal'}/>
           <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddMessageHandler}>
             add message
           </Button>
