@@ -7,7 +7,7 @@ import {
   Center,
   Divider,
   FormControl,
-  FormLabel, IconButton,
+  FormLabel, Heading, IconButton,
   Input,
   Select,
   Wrap,
@@ -22,13 +22,26 @@ class UsersC extends React.Component<UsersPropsType> {
 
   componentDidMount() {
     if (this.props.usersPage.users.length === 0) {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
         this.props.setUsers(response.data.items)
       })
     }
   }
 
+  onPageChanged = (pageNumber: number) => {
+    this.props.setCurrentPage(pageNumber)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+      this.props.setUsers(response.data.items)
+      // this.props.setTotalUsersCount(response.data.totalCount)
+    })
+  }
+
   render = () => {
+    let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i)
+    }
     return (
       <Wrap spacing='30px' display={"flex"} flexWrap={'wrap'}>
         <WrapItem minWidth={'350'}
@@ -82,18 +95,28 @@ class UsersC extends React.Component<UsersPropsType> {
           </Center>
         </WrapItem>
         <WrapItem>
-          <Center mt={'10px'}>
+          <Center mt={'10px'} display={'flex'} flexDirection={'column'}>
             <FormControl minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
                          alignItems={'top'}>
               <FormLabel htmlFor='first-name'>Find user...</FormLabel>
               <Input id='first-name' placeholder='Enter name...'/>
               <FormLabel htmlFor='country'>Country</FormLabel>
-              <Select id='country' placeholder='Select country'>
-                <option>Russia</option>
-                <option>Belarus</option>
+              <Select id='country' placeholder='Select location'>
+                <option>Mars</option>
+                <option>Saturn</option>
               </Select>
               <IconButton mt={'5'} float={'right'} aria-label='Search database' icon={<SearchIcon/>}/>
+              {this.props.totalUsersCount}
             </FormControl>
+            <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
+            <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+              <Box>
+                {pages.map(p => this.props.currentPage === p ?
+                  <Button colorScheme={'teal'}>{p}</Button> :
+                  <Button onClick={() =>this.onPageChanged(p)}>{p}</Button>
+                )}
+              </Box>
+            </Box>
           </Center>
         </WrapItem>
       </Wrap>

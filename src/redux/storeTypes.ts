@@ -1,6 +1,12 @@
 import {addMessageActionCreator, changeTextMessageActionCreator} from "./dialogs-reducer";
 import {addPostActionCreator, changeTextPostActionCreator} from "./profile-reducer";
-import {followACType, setUsersACType, unfollowACType} from "./users-reducer";
+import {
+  FollowACType,
+  SetCurrentPageACType,
+  SetTotalUsersCountACType,
+  SetUsersACType,
+  UnfollowACType
+} from "./users-reducer";
 
 export type StoreType = {
   _state: StatePropsType
@@ -45,6 +51,8 @@ export type ActionTypes =
   | ChangeTextPostActionType
   | AddMessageActionType
   | ChangeTextMessageActionType
-  | followACType
-  | unfollowACType
-  | setUsersACType
+  | FollowACType
+  | UnfollowACType
+  | SetUsersACType
+  | SetCurrentPageACType
+  | SetTotalUsersCountACType
