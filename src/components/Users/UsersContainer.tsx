@@ -28,7 +28,7 @@ type MapDispatchPropsType = {
 }
 
 
-class UsersC extends React.Component<UsersPropsType> {
+class UsersConteiner extends React.Component<UsersPropsType> {
 
   componentDidMount() {
     if (this.props.usersPage.users.length === 0) {
@@ -95,4 +95,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 }
 
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersConteiner)
