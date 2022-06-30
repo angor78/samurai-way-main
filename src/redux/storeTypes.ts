@@ -4,7 +4,7 @@ import {
   FollowACType,
   SetCurrentPageACType,
   SetTotalUsersCountACType,
-  SetUsersACType,
+  SetUsersACType, ToggleIsFetchingACType,
   UnfollowACType
 } from "./users-reducer";
 
@@ -56,3 +56,4 @@ export type ActionTypes =
   | SetUsersACType
   | SetCurrentPageACType
   | SetTotalUsersCountACType
+  | ToggleIsFetchingACType
