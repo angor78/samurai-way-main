@@ -9,7 +9,7 @@ import {
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import UsersC from "./Users";
+import UsersC from "./UsersAPIRequest";
 
 type MapStatePropsType = {
   usersPage: initialUsersStateType
