@@ -44,7 +44,7 @@ export default function HeaderWithAction() {
               as={'nav'}
               spacing={6}
               display={{base: 'none', md: 'flex'}}>
-              <NavLink className={s.Navlink} to={"/profile"}>Profile</NavLink>
+              <NavLink className={s.Navlink} to={"/profile/19509"}>Profile</NavLink>
               <NavLink className={s.Navlink} to={"/users"}>Users</NavLink>
               <NavLink className={s.Navlink} to={"/dialogs"}>Messages</NavLink>
               <NavLink className={s.Navlink} to={"/news"}>News</NavLink>
@@ -84,7 +84,8 @@ export default function HeaderWithAction() {
         {isOpen ? (
           <Box pb={4} display={{md: 'none'}}>
             <Stack as={'nav'} spacing={4}>
-              <NavLink to={"/profile"}>Profile</NavLink>
+              <NavLink to={"/profile/19509"}>Profile</NavLink>
+              <NavLink  to={"/users"}>Users</NavLink>
               <NavLink to={"/dialogs"}>Messages</NavLink>
               <NavLink to={"/news"}>News</NavLink>
               <NavLink to={"/music"}>Musik</NavLink>

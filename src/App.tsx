@@ -24,7 +24,7 @@ function App() {
                    element={<DialogsContainer/>}/>
             <Route path={"/users"}
                    element={<UsersContainer/>}/>
-            <Route path={"/profile"}
+            <Route path={'/profile/:userId'}
                    element={<ProfileContainer/>}/>
             <Route path={"/music"} element={<Music/>}/>
             <Route path={"/news"} element={<News/>}/>

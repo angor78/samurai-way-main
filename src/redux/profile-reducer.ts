@@ -4,14 +4,17 @@ import {ActionTypes, PostType} from "./storeTypes";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 export type initialProfileStateType = {
+  profile: any
   newTextPost: string
   posts: Array<{ id: string, message: string, likeCount: number }>
 
 }
 
 let initialState = {
+  profile: null ,
   newTextPost: '',
   posts: [
     {id: v1(), message: "It's my first yo.", likeCount: 1},
@@ -22,7 +25,6 @@ let initialState = {
       message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n',
       likeCount: 12
     },
-
   ] as Array<PostType>
 }
 
@@ -36,15 +38,23 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
     case CHANGE_TEXT_POST:
       return {...state, newTextPost: action.postText}
 
+    case SET_USER_PROFILE:
+      return {...state, profile: action.profile}
+
     default:
       return state
   }
 }
 
 
-export const addPostActionCreator = () => {
+export const addPost = () => {
   return {type: 'ADD-POST'} as const
 }
-export const changeTextPostActionCreator = (postText: string) => {
+export const changeTextPost = (postText: string) => {
   return {type: 'CHANGE-TEXT-POST', postText: postText} as const
+}
+
+export type SetUserProfileType = ReturnType<typeof setUserProfile>
+export const setUserProfile = (profile: any) => {
+  return {type: SET_USER_PROFILE, profile} as const
 }

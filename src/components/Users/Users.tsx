@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {Image} from '@chakra-ui/react'
 import {SearchIcon} from "@chakra-ui/icons";
+import {NavLink} from "react-router-dom";
 
 type Users2Type = UsersPropsType & {
   onPageChanged: (page: number) => void
@@ -45,9 +46,9 @@ const Users = (props: Users2Type) => {
           <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
           <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
             <Box>
-              {pages.map(p => props.currentPage === p ?
-                <Button colorScheme={'teal'}>{p}</Button> :
-                <Button onClick={() => props.onPageChanged(p)}>{p}</Button>
+              {pages.map((p,i) => props.currentPage === p ?
+                <Button colorScheme={'teal'} key={i}>{p}</Button> :
+                <Button onClick={() => props.onPageChanged(p)} key={i}>{p}</Button>
               )}
             </Box>
             {props.isFetching ? <Progress size='xs' isIndeterminate colorScheme='teal'/> : null}
@@ -62,13 +63,15 @@ const Users = (props: Users2Type) => {
           {props.usersPage.users.map(u =>
             <Box margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'}>
               <Box display='block' alignItems='center' verticalAlign={'middle'} flexDirection={'row'}>
-                <Image
-                  src={u.photos.small != null ? u.photos.small : 'https://cdn-icons-png.flaticon.com/512/560/560216.png'}
-                  alt='avatar' boxSize='50px' objectFit='cover' display={'inline-block'}/>
-                <Box as='span' color='gray.600' fontSize='lg' p={'5'} display={'inline-block'} verticalAlign={'top'}
-                     pt={'5'} pl={'5'}>
-                  {u.name}
-                </Box>
+                <NavLink to={'/profile/'+u.id}>
+                  <Image
+                    src={u.photos.small != null ? u.photos.small : 'https://cdn-icons-png.flaticon.com/512/560/560216.png'}
+                    alt='avatar' boxSize='50px' objectFit='cover' display={'inline-block'}/>
+                  <Box as='span' color='gray.600' fontSize='lg' p={'5'} display={'inline-block'} verticalAlign={'top'}
+                       pt={'5'} pl={'5'}>
+                    {u.name}
+                  </Box>
+                </NavLink>
                 <Box float={'right'}>
                   {u.followed ?
                     <Button display={'block'} float={'right'} colorScheme='teal' size='sm'

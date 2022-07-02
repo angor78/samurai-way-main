@@ -1,8 +1,9 @@
 import React, {ChangeEvent} from "react";
-import {Box, Button, Image, Textarea} from "@chakra-ui/react";
-import {Text} from '@chakra-ui/react'
+import {Badge, Box, Button, Image, Progress, Textarea} from "@chakra-ui/react";
+import {ProfileType} from "../../../redux/storeTypes";
 
 type ProfileInfoType = {
+  profile: ProfileType
   newPostText: string
   changePost: (text: string) => void
   addPost: (text: string) => void
@@ -14,30 +15,42 @@ const ProfileInfo = (props: ProfileInfoType) => {
   const onChangePostHandle = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.changePost(e.currentTarget.value)
   }
-  return (
-    <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
-      <Box float={'right'}>
-        <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
-        <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
-          Add post
-        </Button>
-      </Box>
-      <Box>
-        <Image
-          borderRadius='full'
-          alt={'1111'}
-          src={
-            'https://avatars.githubusercontent.com/u/15981680?s=400&u=c777ec047d344fe8a7f933de75e3e3db39f78841&v=4'
-          }
-        />
-      </Box>
-      <Box>
-        <Text fontSize='1xl' mt={'5'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur eaque ipsa itaque magni
-          odio quas qui quibusdam quod ratione rem soluta sunt tenetur, vitae voluptatem. Accusamus asperiores aut
-          sit.
-        </Text>
-      </Box>
-    </Box>)
+  if(!props.profile){
+    return <Progress size='xs' isIndeterminate colorScheme='teal'/>
+  }else{
+    return (
+      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
+        <Box float={'right'}>
+          <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
+          <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
+            Add post
+          </Button>
+        </Box>
+          <Box>
+            <Image
+              borderRadius='full'
+              alt={'1111'}
+              src={
+                props.profile.photos.large?props.profile.photos.large: 'https://cdn-icons-png.flaticon.com/512/560/560216.png'
+              }
+            />
+          </Box>
+          <Box >
+            <Badge borderRadius='full' px='5' colorScheme='blue'>
+              Name: {props.profile.fullName}
+            </Badge>
+            <Badge borderRadius='full' px='2' colorScheme='teal'>
+              About me: {props.profile.aboutMe}
+            </Badge>
+            <Badge borderRadius='full' px='2' colorScheme='teal'>
+              userId: {props.profile.userId}
+            </Badge>
+            <Badge borderRadius='full' px='2' colorScheme='blue'>
+              Github: {props.profile.contacts.github}
+            </Badge>
+          </Box>
+      </Box>)
+  }
+
 }
 export default ProfileInfo

@@ -7,6 +7,7 @@ import {ProfilePropsType} from "./ProfileContainer";
 
 
 const Profile = (props: ProfilePropsType) => {
+
   return (
     <Box display={'flex'}>
       <Box float={'left'} mt={'10'}>
@@ -15,9 +16,10 @@ const Profile = (props: ProfilePropsType) => {
         />
       </Box>
       <Box maxW={'300'} float={'right'} p={'10'}>
-        <ProfileInfo addPost={props.addPost}
+        <ProfileInfo profile={props.profilePage.profile}
+                     addPost={props.addPost}
                      newPostText={props.profilePage.newTextPost}
-                     changePost={props.changePost}/>
+                     changePost={props.changeTextPost}/>
       </Box>
     </Box>
 
