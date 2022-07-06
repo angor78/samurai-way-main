@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {HamburgerIcon, CloseIcon,ExternalLinkIcon} from '@chakra-ui/icons';
-import { Text} from '@chakra-ui/react'
+import {HamburgerIcon, CloseIcon, ExternalLinkIcon} from '@chakra-ui/icons';
+import {Text} from '@chakra-ui/react'
 import {
   Avatar,
   Box,
@@ -14,14 +14,20 @@ import {
   MenuList,
   Stack, useDisclosure
 } from "@chakra-ui/react";
-import s from './HeaderWithActionType.module.css'
+import s from './Header.module.css'
+import {initialAuthType} from "../../redux/auth-reducer";
 
-export default function HeaderWithAction() {
+type HeaderPropsType = {
+  auth: initialAuthType
+  setAuthUserData: (data: any) => void
+}
+
+export default function Header(props: HeaderPropsType) {
   const {isOpen, onOpen, onClose} = useDisclosure();
 
   return (
     <>
-      <Box bg={'black'} px={4}  color={'whiteAlpha.600'} >
+      <Box bg={'black'} px={4} color={'whiteAlpha.600'}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -53,7 +59,12 @@ export default function HeaderWithAction() {
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
+
             <Menu>
+              {props.auth.isAuth ? props.auth.login :
+                <NavLink to={'/login'}>Login</NavLink>
+              }
+
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -85,7 +96,7 @@ export default function HeaderWithAction() {
           <Box pb={4} display={{md: 'none'}}>
             <Stack as={'nav'} spacing={4}>
               <NavLink to={"/profile/19509"}>Profile</NavLink>
-              <NavLink  to={"/users"}>Users</NavLink>
+              <NavLink to={"/users"}>Users</NavLink>
               <NavLink to={"/dialogs"}>Messages</NavLink>
               <NavLink to={"/news"}>News</NavLink>
               <NavLink to={"/music"}>Musik</NavLink>
