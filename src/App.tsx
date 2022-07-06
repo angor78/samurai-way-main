@@ -6,15 +6,15 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import {Route, Routes} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import HeaderWithAction from "./components/HeaderWithActionType/HeaderWithActionType";
 import {MainImage} from "./components/MainImage/MainImage";
 import {ProfileContainer} from "./components/Profile/ProfileContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 
 function App() {
   return (
     <ChakraProvider>
-      <HeaderWithAction/>
+      <HeaderContainer/>
       <div className="app-wrap">
         <div className="app-wrap-content">
           <Routes>
