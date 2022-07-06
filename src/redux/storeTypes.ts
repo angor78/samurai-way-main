@@ -4,9 +4,10 @@ import {
   FollowACType,
   SetCurrentPageACType,
   SetTotalUsersCountACType,
-  SetUsersACType, ToggleIsFetchingACType,
+  SetUsersACType, ToggleIsFetchingACType, ToggleIsFollowingType,
   UnfollowACType
 } from "./users-reducer";
+import {SetUsersDataType} from "./auth-reducer";
 
 export type StoreType = {
   _state: StatePropsType
@@ -48,7 +49,7 @@ export type ProfileType = {
   lookingForAJob: boolean
   lookingForAJobDescription: string
   aboutMe: string
-  contacts: {facebook: string,github: string, instagram: string, mainLink: string, twitter: string, vk: string, website: string, youtube: string}
+  contacts: { facebook: string, github: string, instagram: string, mainLink: string, twitter: string, vk: string, website: string, youtube: string }
   photos: { small: string, large: string }
   userId: number
 }
@@ -68,3 +69,5 @@ export type ActionTypes =
   | SetTotalUsersCountACType
   | ToggleIsFetchingACType
   | SetUserProfileType
+  | SetUsersDataType
+  | ToggleIsFollowingType
