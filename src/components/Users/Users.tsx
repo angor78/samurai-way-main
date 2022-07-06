@@ -16,11 +16,12 @@ import {
 import {Image} from '@chakra-ui/react'
 import {SearchIcon} from "@chakra-ui/icons";
 import {NavLink} from "react-router-dom";
+import {followAPI, unfollowAPI} from "../../api/api";
 
-type Users2Type = UsersPropsType & {
+type UsersType = UsersPropsType & {
   onPageChanged: (page: number) => void
 }
-const Users = (props: Users2Type) => {
+const Users = (props: UsersType) => {
 
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
   let pages = []
@@ -29,7 +30,7 @@ const Users = (props: Users2Type) => {
   }
   return (
     <Wrap spacing='30px' display={"flex"} flexWrap={'wrap'}>
-      <WrapItem >
+      <WrapItem>
         <Center ml={'20px'} mt={'10px'} display={'flex'} flexDirection={'column'}>
           <FormControl minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
                        alignItems={'top'}>
@@ -46,7 +47,7 @@ const Users = (props: Users2Type) => {
           <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
           <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
             <Box>
-              {pages.map((p,i) => props.currentPage === p ?
+              {pages.map((p, i) => props.currentPage === p ?
                 <Button colorScheme={'teal'} key={i}>{p}</Button> :
                 <Button onClick={() => props.onPageChanged(p)} key={i}>{p}</Button>
               )}
@@ -61,9 +62,9 @@ const Users = (props: Users2Type) => {
                 overflow='hidden'>
         <Center display={'inline-block'}>
           {props.usersPage.users.map(u =>
-            <Box margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'}>
+            <Box key={u.id} margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'}>
               <Box display='block' alignItems='center' verticalAlign={'middle'} flexDirection={'row'}>
-                <NavLink to={'/profile/'+u.id}>
+                <NavLink to={'/profile/' + u.id}>
                   <Image
                     src={u.photos.small != null ? u.photos.small : 'https://cdn-icons-png.flaticon.com/512/560/560216.png'}
                     alt='avatar' boxSize='50px' objectFit='cover' display={'inline-block'}/>
@@ -75,8 +76,30 @@ const Users = (props: Users2Type) => {
                 <Box float={'right'}>
                   {u.followed ?
                     <Button display={'block'} float={'right'} colorScheme='teal' size='sm'
-                            onClick={() => props.unfollow(u.id)}>Unfollow</Button>
-                    : <Button colorScheme='blue' size='sm' onClick={() => props.follow(u.id)}>Follow</Button>}
+                            disabled={props.following}
+                            onClick={() => {
+                              props.toggleIsFollowing(true)
+                              unfollowAPI.unfollow(u.id)
+                                .then(data => {
+                                  if (data.resultCode === 0) {
+                                    props.unfollow(u.id)
+                                  }
+                                  props.toggleIsFollowing(false)
+                                })
+                            }}>Unfollow</Button>
+                    : <Button colorScheme='blue' size='sm'
+                              disabled={props.following}
+                              onClick={() => {
+                                props.toggleIsFollowing(true)
+                                followAPI.follow(u.id)
+                                  .then(data => {
+
+                                    if (data.resultCode === 0) {
+                                      props.follow(u.id)
+                                    }
+                                    props.toggleIsFollowing(false)
+                                  })
+                              }}>Follow</Button>}
                 </Box>
               </Box>
 
