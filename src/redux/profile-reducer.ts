@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {ActionTypes, PostType} from "./storeTypes";
+import {getUserProfileAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 
 
@@ -61,12 +63,9 @@ export const setUserProfile = (profile: any) => {
 }
 
 //Thunk
-// export const getUserProfile = () =>
-//   (dispatch: Dispatch) => {
-//     let userId=this.props.router.params.userId
-//     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
-//       .then(response => {
-//         this.props.setUserProfile(response.data)
-//       })
-//     })
-//   }
+export const getUserProfile = (userId:string) =>
+  (dispatch: Dispatch) => {
+    getUserProfileAPI.getUserProfile(userId).then(data => {
+      dispatch(setUserProfile(data))
+    })
+  }

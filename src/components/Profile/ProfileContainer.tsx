@@ -2,26 +2,23 @@ import "./Profile.module.css"
 import {connect} from "react-redux";
 import {
   addPost,
-  changeTextPost,
-  initialProfileStateType,
-  setUserProfile
+  changeTextPost, getUserProfile,
+  initialProfileStateType, setUserProfile,
 } from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import React from "react";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
-import {getUserProfileAPI} from "../../api/api";
 type ProfileClassContainerType = ProfilePropsType & {
   router: { params: { userId: string } }
+  getUserProfile:(userId:string)=>void
 }
 
 class ProfileClassContainer extends React.Component<ProfileClassContainerType> {
 
   componentDidMount() {
     let userId = this.props.router.params.userId
-    getUserProfileAPI.getUserProfile(userId).then(data => {
-      this.props.setUserProfile(data)
-    })
+    this.props.getUserProfile(userId)
   }
 
   render() {
@@ -63,4 +60,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export const ProfileContainer = connect(mapStateToProps,
-  {addPost, changeTextPost, setUserProfile})(withRouter(ProfileClassContainer))
+  {addPost, changeTextPost, setUserProfile, getUserProfile})(withRouter(ProfileClassContainer))
