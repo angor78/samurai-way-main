@@ -59,7 +59,7 @@ const Users = (props: UsersType) => {
                 overflow='hidden'>
         <Center display={'inline-block'}>
           {props.usersPage.users.map(u =>
-            <User user={u} follow={props.follow} unfollow={props.unfollow} following={props.following}/>
+            <User key={u.id} user={u} follow={props.follow} unfollow={props.unfollow} following={props.following}/>
           )}
         </Center>
       </WrapItem>

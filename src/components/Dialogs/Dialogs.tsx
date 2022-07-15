@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {Box, Button, Input} from "@chakra-ui/react";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Navigate} from "react-router-dom";
 
 
 
@@ -27,6 +28,9 @@ const Dialogs = (props: DialogsPropsType) => {
   const onChangeMessageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     props.changeMessageText(e.currentTarget.value)
   }
+
+  if(!props.isAuth) return <Navigate to="/Login" />
+
   return (
     <Box display={'flex'}  className={s.dialogs}  >
       <Box display={'block'}  >

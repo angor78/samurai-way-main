@@ -119,7 +119,7 @@ export const getUsers = (currentPage: number, pageSize: number) =>
     usersAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(setCurrentPage(currentPage))
       dispatch(toggleIsFetching(false))
-      dispatch(setUsers(data.items))
+      dispatch(setUsers(data.data.items))
     })
   }
 
@@ -128,7 +128,7 @@ export const follow = (userId: number) =>
     dispatch(toggleIsFollowing(true))
     followAPI.follow(userId)
       .then(data => {
-        if (data.resultCode === 0) {
+        if (data.data.resultCode === 0) {
           dispatch(followSuccess(userId))
         }
         dispatch(toggleIsFollowing(false))
@@ -140,7 +140,7 @@ export const unfollow = (userId: number) =>
     dispatch(toggleIsFollowing(true))
     unfollowAPI.unfollow(userId)
       .then(data => {
-        if (data.resultCode === 0) {
+        if (data.data.resultCode === 0) {
           dispatch(unfollowSuccess(userId))
         }
         dispatch(toggleIsFollowing(false))

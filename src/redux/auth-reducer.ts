@@ -1,4 +1,6 @@
 import {ActionTypes} from "./storeTypes";
+import {Dispatch} from "redux";
+import {authMeAPI} from "../api/api";
 
 
 const SET_USERS_DATA = 'SET_USERS_DATA'
@@ -44,6 +46,10 @@ export const setAuthUserData = (data:any) => {
   } as const
 }
 
-
+//Thunk
+export const authMe = () =>
+  (dispatch: Dispatch) => {
+    authMeAPI.authMe().then(data=>dispatch(setAuthUserData(data.data)))
+  }
 
 

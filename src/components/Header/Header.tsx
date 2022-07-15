@@ -50,12 +50,24 @@ export default function Header(props: HeaderPropsType) {
               as={'nav'}
               spacing={6}
               display={{base: 'none', md: 'flex'}}>
-              <NavLink className={s.Navlink} to={"/profile/19509"}>Profile</NavLink>
-              <NavLink className={s.Navlink} to={"/users"}>Users</NavLink>
-              <NavLink className={s.Navlink} to={"/dialogs"}>Messages</NavLink>
-              <NavLink className={s.Navlink} to={"/news"}>News</NavLink>
-              <NavLink className={s.Navlink} to={"/music"}>Musik</NavLink>
-              <NavLink className={s.Navlink} to={"/settings"}>Settings</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/profile/19509"}>Profile</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/users"}>Users</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/dialogs"}>Messages</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/news"}>News</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/music"}>Musik</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/settings"}>Settings</NavLink>
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
@@ -95,12 +107,24 @@ export default function Header(props: HeaderPropsType) {
         {isOpen ? (
           <Box pb={4} display={{md: 'none'}}>
             <Stack as={'nav'} spacing={4}>
-              <NavLink to={"/profile/19509"}>Profile</NavLink>
-              <NavLink to={"/users"}>Users</NavLink>
-              <NavLink to={"/dialogs"}>Messages</NavLink>
-              <NavLink to={"/news"}>News</NavLink>
-              <NavLink to={"/music"}>Musik</NavLink>
-              <NavLink to={"/settings"}>Settings</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/profile/19509"}>Profile</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/users"}>Users</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/dialogs"}>Messages</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/news"}>News</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/music"}>Musik</NavLink>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/settings"}>Settings</NavLink>
             </Stack>
           </Box>
         ) : null}
