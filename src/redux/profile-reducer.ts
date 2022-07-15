@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import {ActionTypes, PostType} from "./storeTypes";
 
 
+
 const ADD_POST = 'ADD-POST'
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -58,3 +59,14 @@ export type SetUserProfileType = ReturnType<typeof setUserProfile>
 export const setUserProfile = (profile: any) => {
   return {type: SET_USER_PROFILE, profile} as const
 }
+
+//Thunk
+// export const getUserProfile = () =>
+//   (dispatch: Dispatch) => {
+//     let userId=this.props.router.params.userId
+//     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
+//       .then(response => {
+//         this.props.setUserProfile(response.data)
+//       })
+//     })
+//   }

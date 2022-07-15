@@ -57,6 +57,7 @@ export type AddPostActionType = ReturnType<typeof addPost>
 export type ChangeTextPostActionType = ReturnType<typeof changeTextPost>
 export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
 export type ChangeTextMessageActionType = ReturnType<typeof changeTextMessageActionCreator>
+
 export type ActionTypes =
   AddPostActionType
   | ChangeTextPostActionType
