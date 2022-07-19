@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import {Badge, Box, Button, Image, Progress, Textarea} from "@chakra-ui/react";
 import {ProfileType} from "../../../redux/storeTypes";
+import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoType = {
   profile: ProfileType
@@ -25,6 +26,11 @@ const ProfileInfo = (props: ProfileInfoType) => {
           <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
             Add post
           </Button>
+          <Box>
+            <Badge borderRadius='full' px='5' colorScheme='facebook' mt={'10'} p={'3'}>
+              <ProfileStatus />
+            </Badge>
+          </Box>
         </Box>
           <Box>
             <Image
@@ -35,6 +41,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
               }
             />
           </Box>
+
           <Box >
             <Badge borderRadius='full' px='5' colorScheme='blue'>
               Name: {props.profile.fullName}
