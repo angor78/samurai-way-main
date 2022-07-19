@@ -20,42 +20,46 @@ const ProfileInfo = (props: ProfileInfoType) => {
     return <Progress size='xs' isIndeterminate colorScheme='teal'/>
   }else{
     return (
-      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
+      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'} >
         <Box float={'right'}>
           <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
           <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
             Add post
           </Button>
-          <Box>
-            <Badge borderRadius='full' px='5' colorScheme='facebook' mt={'10'} p={'3'}>
-              <ProfileStatus />
-            </Badge>
-          </Box>
-        </Box>
-          <Box>
-            <Image
-              borderRadius='full'
-              alt={'1111'}
-              src={
-                props.profile.photos.large?props.profile.photos.large: 'https://cdn-icons-png.flaticon.com/512/560/560216.png'
-              }
-            />
+          <Box borderWidth='1px' borderRadius='lg' p={'5'}>
+            <Box>
+              <Badge borderRadius='full' px='5' colorScheme='red'  mb={'3'}>
+                <ProfileStatus status={'Hello my friends'}/>
+              </Badge>
+              <Box>
+                <Image
+                  borderRadius='full'
+                  alt={'1111'}
+                  src={
+                    props.profile.photos.large?props.profile.photos.large: 'https://cdn-icons-png.flaticon.com/512/560/560216.png'
+                  }
+                />
+              </Box>
+
+              <Box >
+                <Badge borderRadius='full' px='5' colorScheme='blue'>
+                  Name: {props.profile.fullName}
+                </Badge>
+                <Badge borderRadius='full' px='2' colorScheme='teal'>
+                  About me: {props.profile.aboutMe}
+                </Badge>
+                <Badge borderRadius='full' px='2' colorScheme='teal'>
+                  userId: {props.profile.userId}
+                </Badge>
+                <Badge borderRadius='full' px='2' colorScheme='blue'>
+                  Github: {props.profile.contacts.github}
+                </Badge>
+              </Box>
+            </Box>
           </Box>
 
-          <Box >
-            <Badge borderRadius='full' px='5' colorScheme='blue'>
-              Name: {props.profile.fullName}
-            </Badge>
-            <Badge borderRadius='full' px='2' colorScheme='teal'>
-              About me: {props.profile.aboutMe}
-            </Badge>
-            <Badge borderRadius='full' px='2' colorScheme='teal'>
-              userId: {props.profile.userId}
-            </Badge>
-            <Badge borderRadius='full' px='2' colorScheme='blue'>
-              Github: {props.profile.contacts.github}
-            </Badge>
           </Box>
+
       </Box>)
   }
 
