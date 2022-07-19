@@ -7,7 +7,6 @@ import {ProfilePropsType} from "./ProfileContainer";
 
 
 const Profile = (props: ProfilePropsType) => {
-
   return (
     <Box display={'flex'}>
       <Box float={'left'} mt={'10'}>
