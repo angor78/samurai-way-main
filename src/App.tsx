@@ -6,9 +6,9 @@ import News from "./components/News/News";
 import {Login} from "./components/Login/Login";
 import Settings from "./components/Settings/Settings";
 import {Route, Routes} from "react-router-dom";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {MainImage} from "./components/MainImage/MainImage";
-import {ProfileContainer} from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 
@@ -26,11 +26,11 @@ function App() {
             <Route path={"/users"}
                    element={<UsersContainer/>}/>
             <Route path={'/profile/:userId'}
-                   element={<ProfileContainer/>}/>
+                   element={<ProfileContainer />}/>
             <Route path={"/music"} element={<Music/>}/>
             <Route path={"/news"} element={<News/>}/>
             <Route path={"/settings"} element={<Settings/>}/>
-            <Route path={"/login"} element={<Login />}/>
+            <Route path={"/login"} element={<Login/>}/>
           </Routes>
         </div>
       </div>
