@@ -8,6 +8,8 @@ type ProfileInfoType = {
   newPostText: string
   changePost: (text: string) => void
   addPost: (text: string) => void
+  updateStatus: (status: string) => void
+  status: string
 }
 const ProfileInfo = (props: ProfileInfoType) => {
   const onClickAddPostHandler = () => {
@@ -16,32 +18,32 @@ const ProfileInfo = (props: ProfileInfoType) => {
   const onChangePostHandle = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.changePost(e.currentTarget.value)
   }
-  if(!props.profile){
+  if (!props.profile) {
     return <Progress size='xs' isIndeterminate colorScheme='teal'/>
-  }else{
+  } else {
     return (
-      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'} >
+      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
         <Box float={'right'}>
           <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
           <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
             Add post
           </Button>
-          <Box borderWidth='1px' borderRadius='lg' p={'5'}>
+          <Box borderWidth='1px' borderRadius='lg' p={'5'} maxW={'220px'}>
             <Box>
-              <Badge borderRadius='full' px='5' colorScheme='red'  mb={'3'}>
-                <ProfileStatus status={'Hello my friends'}/>
+              <Badge borderRadius='full' px='5' colorScheme='red' mb={'3'} maxW={'200px'}>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
               </Badge>
               <Box>
                 <Image
                   borderRadius='full'
                   alt={'1111'}
                   src={
-                    props.profile.photos.large?props.profile.photos.large: 'https://cdn-icons-png.flaticon.com/512/560/560216.png'
+                    props.profile.photos.large ? props.profile.photos.large : 'https://cdn-icons-png.flaticon.com/512/560/560216.png'
                   }
                 />
               </Box>
 
-              <Box >
+              <Box>
                 <Badge borderRadius='full' px='5' colorScheme='blue'>
                   Name: {props.profile.fullName}
                 </Badge>
@@ -58,7 +60,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
             </Box>
           </Box>
 
-          </Box>
+        </Box>
 
       </Box>)
   }

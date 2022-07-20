@@ -1,5 +1,5 @@
 import {addMessageActionCreator, changeTextMessageActionCreator} from "./dialogs-reducer";
-import {addPost, changeTextPost, SetUserProfileType} from "./profile-reducer";
+import {addPost, changeTextPost, SetStatusType, SetUserProfileType} from "./profile-reducer";
 import {
   FollowACType,
   SetCurrentPageACType,
@@ -72,3 +72,4 @@ export type ActionTypes =
   | SetUserProfileType
   | SetUsersDataType
   | ToggleIsFollowingType
+  | SetStatusType
