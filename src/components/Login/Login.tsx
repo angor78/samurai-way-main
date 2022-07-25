@@ -6,7 +6,6 @@ import {login} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 
 
-
 interface FormValues {
   email: string
   password: string
@@ -89,9 +88,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         </form>
       </Box>
     </Box>
-
   )
 }
+
 export const LoginFormik = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => ({
     email: props.initialEmail || "",
@@ -105,10 +104,12 @@ export const LoginFormik = withFormik<MyFormProps, FormValues>({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-  handleSubmit({email, password, rememberMe, captcha}: FormValues, {props, setSubmitting, setErrors}) {
+  handleSubmit({email, password, rememberMe, captcha}: FormValues, {props, setSubmitting}) {
     props.login(email, password, rememberMe, captcha)
     setSubmitting(false)
+    window.location.replace('/')
   }
 })(InnerForm)
-export const Login =  connect(null,
-    {login})(LoginFormik)
+
+export const Login = connect(null,
+  {login})(LoginFormik)
