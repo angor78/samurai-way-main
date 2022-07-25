@@ -17,6 +17,12 @@ export const usersAPI = {
 export const authMeAPI = {
   authMe() {
     return instance.get(`auth/me`)
+  },
+  login(email: string, password: string, rememberMe: boolean, captcha: boolean) {
+    return instance.post(`/auth/login`, {email, password, rememberMe, captcha})
+  },
+  logout() {
+    return instance.delete(`/auth/login`)
   }
 }
 export const followAPI = {
@@ -40,7 +46,7 @@ export const ProfileStatusAPI = {
     return instance.get(`profile/status/` + userId)
   },
   updateStatus(status: string) {
-    return instance.put(`profile/status`,{status} )
+    return instance.put(`profile/status`, {status})
   },
-
 }
+
