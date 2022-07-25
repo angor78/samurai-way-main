@@ -59,11 +59,13 @@ const ProfileInfo = (props: ProfileInfoType) => {
               </Box>
             </Box>
           </Box>
-
         </Box>
-
       </Box>)
   }
 
 }
 export default ProfileInfo
+
+const AddPostForm = () => {
+
+}
