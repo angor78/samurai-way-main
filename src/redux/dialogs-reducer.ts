@@ -3,7 +3,6 @@ import {ActionTypes, DialogType, MessageType} from "./storeTypes";
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
-const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE'
 export type InitialStateType = typeof initialState
 let initialState = {
   newTextMessage: '',
@@ -49,20 +48,16 @@ let initialState = {
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
   switch (action.type) {
     case ADD_MESSAGE:
-      const newMessage: MessageType = {id: v1(), message: state.newTextMessage}
-      return {...state, newTextMessage:'', messagesData: [...state.messagesData, newMessage]}
+      const newMessage: MessageType = {id: v1(), message: action.value}
+      return {...state, messagesData: [...state.messagesData, newMessage]}
 
-    case CHANGE_TEXT_MESSAGE:
-      return {...state,newTextMessage: action.textMessage}
 
     default:
       return state
   }
 }
 
-export const addMessageActionCreator = () => {
-  return {type: 'ADD-MESSAGE'} as const
+export const addMessageActionCreator = (value:string) => {
+  return {type: 'ADD-MESSAGE', value} as const
 }
-export const changeTextMessageActionCreator = (textMessage: string) => {
-  return {type: 'CHANGE-TEXT-MESSAGE', textMessage: textMessage} as const
-}
+
