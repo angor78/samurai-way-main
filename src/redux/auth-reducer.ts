@@ -5,7 +5,6 @@ import {authMeAPI} from "../api/api";
 
 const SET_USERS_DATA = 'SET_USERS_DATA'
 
-
 export type initialAuthType = {
   id: number
   email: string
@@ -27,11 +26,12 @@ export const authReducer = (state: initialAuthType = initialAuth, action: Action
     case SET_USERS_DATA:
       return {
         ...state,
-        id: action.data.data.id,
-        email: action.data.data.email,
-        login: action.data.data.login,
-        isAuth: action.data.resultCode === 0 && true
+        id: action.id,
+        email: action.email,
+        login: action.login,
+        isAuth: action.isAuth
       }
+
     default:
       return state
 
@@ -40,16 +40,43 @@ export const authReducer = (state: initialAuthType = initialAuth, action: Action
 
 
 export type SetUsersDataType = ReturnType<typeof setAuthUserData>
-export const setAuthUserData = (data:any) => {
+export const setAuthUserData = (id: number, email: string, login: string, isAuth: boolean) => {
   return {
-    type: SET_USERS_DATA, data
+    type: SET_USERS_DATA, id, email, login, isAuth
   } as const
 }
 
 //Thunk
 export const authMe = () =>
   (dispatch: Dispatch) => {
-    authMeAPI.authMe().then(data=>dispatch(setAuthUserData(data.data)))
+    authMeAPI.authMe().then(res => {
+      if (res.data.resultCode === 0) {
+        let data = res.data.data
+        dispatch(setAuthUserData(data.id, data.email, data.login, true))
+      }
+
+    })
   }
+
+export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean) =>
+  (dispatch: any) => {
+    authMeAPI.login(email, password, rememberMe, captcha)
+      .then(data => {
+        if (data.data.resultCode === 0) {
+          dispatch(authMe())
+        }
+      })
+  }
+export const logout = () =>
+  (dispatch: Dispatch) => {
+    authMeAPI.logout()
+      .then(data => {
+        if (data.data.resultCode === 0) {
+          dispatch(setAuthUserData(0, '', '', false))
+        }
+
+      })
+  }
+
 
 
