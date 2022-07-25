@@ -20,7 +20,6 @@ let initialAuth = {
   isAuth: false
 }
 
-
 export const authReducer = (state: initialAuthType = initialAuth, action: ActionTypes): initialAuthType => {
   switch (action.type) {
     case SET_USERS_DATA:
@@ -58,12 +57,15 @@ export const authMe = () =>
     })
   }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean) =>
+export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean, setStatus:any) =>
   (dispatch: any) => {
     authMeAPI.login(email, password, rememberMe, captcha)
       .then(data => {
         if (data.data.resultCode === 0) {
           dispatch(authMe())
+          window.location.replace(`/`)
+        } else {
+          setStatus({error:data.data.messages})
         }
       })
   }
@@ -74,9 +76,12 @@ export const logout = () =>
         if (data.data.resultCode === 0) {
           dispatch(setAuthUserData(0, '', '', false))
         }
-
       })
   }
+
+
+
+
 
 
 

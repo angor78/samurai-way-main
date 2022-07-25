@@ -10,13 +10,14 @@ import {FormikProps, withFormik} from "formik";
 const Dialogs = (props: DialogsPropsType) => {
 
   let messagesElements = props.dialogsPage.messagesData.map((m, i) =>
+
     i % 2 === 0 ?
       <Box key={m.id} textAlign={'left'}>{<Message message={m.message} id={m.id}/>}</Box>
       : <Box key={m.id} textAlign={'right'}>{<Message message={m.message} id={m.id}/>}</Box>
   )
 
-  let dialogsElements = props.dialogsPage.dialogsData.map(d =>
-    <Box key={d.id} textAlign={'left'}>
+  let dialogsElements = props.dialogsPage.dialogsData.map((d,i) =>
+    <Box key={d.id} textAlign={'left'} bg={'teal'}>
       {<DialogItem name={d.name} id={d.id} avatar={d.avatar}/>}
     </Box>
   )

@@ -19,7 +19,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
     props.changePost(e.currentTarget.value)
   }
   if (!props.profile) {
-    return <Progress size='xs' isIndeterminate colorScheme='teal'/>
+    return <Box h={'10'}><Progress size='xs' isIndeterminate colorScheme='teal'/></Box>
   } else {
     return (
       <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
@@ -66,6 +66,3 @@ const ProfileInfo = (props: ProfileInfoType) => {
 }
 export default ProfileInfo
 
-const AddPostForm = () => {
-
-}

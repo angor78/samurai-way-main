@@ -20,6 +20,7 @@ import {initialAuthType} from "../../redux/auth-reducer";
 type HeaderPropsType = {
   auth: initialAuthType
   setAuthUserData: (id: number, email: string, login: string, isAuth: boolean) => void
+  logout:()=>void
 }
 
 export default function Header(props: HeaderPropsType) {
@@ -52,7 +53,7 @@ export default function Header(props: HeaderPropsType) {
               display={{base: 'none', md: 'flex'}}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/profile/19509"}>Profile</NavLink>
+              })} to={"/profile/"+props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
               })} to={"/users"}>Users</NavLink>
@@ -73,8 +74,15 @@ export default function Header(props: HeaderPropsType) {
           <Flex alignItems={'center'}>
 
             <Menu>
-              {props.auth.isAuth ? props.auth.login :
-                <NavLink to={'/login'}>Login</NavLink>
+              {props.auth.isAuth ?
+                <Box color={'#90CDF4'}>{props.auth.login}
+                  <Button onClick={props.logout} ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
+                    Logout
+                  </Button>
+                </Box>  :
+                <Button ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
+                  <NavLink to={'/login'}>Login</NavLink>
+                </Button>
               }
 
               <MenuButton
@@ -109,7 +117,7 @@ export default function Header(props: HeaderPropsType) {
             <Stack as={'nav'} spacing={4}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/profile/19509"}>Profile</NavLink>
+              })} to={"/profile/"+props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
               })} to={"/users"}>Users</NavLink>

@@ -17,11 +17,17 @@ interface OtherProps {
   title?: string;
 }
 
+
 interface MyFormProps {
   initialEmail?: string;
   initialPassword?: string;
   initialRememberMe?: boolean;
-  login: (email: string, password: string, rememberMe: boolean, captcha: boolean) => void
+  login: (email: string,
+          password: string,
+          rememberMe: boolean,
+          captcha: boolean,
+          setStatus:any
+          )=>void,
 }
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
@@ -33,13 +39,15 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     handleBlur,
     handleSubmit,
     isSubmitting,
-    title
+    title,
+    status
   } = props;
+
   return (
     <Box display={'flex'} justifyContent={'center'}>
       <Box w={'400px'} borderWidth='1px' borderRadius='lg' p={'3'} mt={'100px'}>
         <FormLabel><h1>Login{title}</h1></FormLabel>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} name={'login'}>
 
           <Box borderWidth='1px' borderRadius='lg' p={'5'}>
             <Box>
@@ -51,6 +59,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                 onBlur={handleBlur}
                 value={values.email}
               />
+
             </Box>
             <Box>
               <FormLabel>Password</FormLabel>
@@ -62,7 +71,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                 value={values.password}
               />
             </Box>
-
+            <Box color={'red'}>
+              {status.error}
+            </Box>
           </Box>
           <Box mt={'5'}>
             <Box float={'left'}>
@@ -104,10 +115,13 @@ export const LoginFormik = withFormik<MyFormProps, FormValues>({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-  handleSubmit({email, password, rememberMe, captcha}: FormValues, {props, setSubmitting}) {
-    props.login(email, password, rememberMe, captcha)
+  mapPropsToStatus: props => ({
+    error : ""
+  }),
+  handleSubmit({email, password, rememberMe, captcha}: FormValues, {props, setSubmitting,setStatus}) {
+
+    props.login(email, password, rememberMe, captcha,setStatus)
     setSubmitting(false)
-    window.location.replace('/')
   }
 })(InnerForm)
 

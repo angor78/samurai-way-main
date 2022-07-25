@@ -43,6 +43,8 @@ let initialState = {
     {id: v1(), message: "How are you?"},
     {id: v1(), message: "Fine!"},
     {id: v1(), message: "Yo"},
+    {id: v1(), message: "Fine!"},
+    {id: v1(), message: "Yo"},
   ] as Array<MessageType>
 }
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
