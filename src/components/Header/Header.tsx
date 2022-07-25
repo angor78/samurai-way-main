@@ -19,7 +19,7 @@ import {initialAuthType} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
   auth: initialAuthType
-  setAuthUserData: (data: any) => void
+  setAuthUserData: (id: number, email: string, login: string, isAuth: boolean) => void
 }
 
 export default function Header(props: HeaderPropsType) {
