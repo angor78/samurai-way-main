@@ -2,12 +2,16 @@ import React from 'react';
 import {Box, Button, Checkbox, FormLabel, Input} from "@chakra-ui/react";
 import {withFormik, FormikProps} from "formik";
 import * as Yup from "yup";
+import {login} from "../../redux/auth-reducer";
+import {connect} from "react-redux";
+
 
 
 interface FormValues {
   email: string
   password: string
   rememberMe: boolean
+  captcha: boolean
 }
 
 interface OtherProps {
@@ -18,6 +22,7 @@ interface MyFormProps {
   initialEmail?: string;
   initialPassword?: string;
   initialRememberMe?: boolean;
+  login: (email: string, password: string, rememberMe: boolean, captcha: boolean) => void
 }
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
@@ -81,18 +86,18 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
               Sign In
             </Button>
           </Box>
-
         </form>
       </Box>
     </Box>
 
   )
 }
-export const Login = withFormik<MyFormProps, FormValues>({
+export const LoginFormik = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => ({
     email: props.initialEmail || "",
     password: props.initialPassword || "",
-    rememberMe: props.initialRememberMe || false
+    rememberMe: props.initialRememberMe || false,
+    captcha: true,
   }),
   validationSchema: Yup.object().shape({
     email: Yup.string()
@@ -100,7 +105,10 @@ export const Login = withFormik<MyFormProps, FormValues>({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-  handleSubmit({email, password, rememberMe}: FormValues, {props, setSubmitting, setErrors}) {
-    console.log(email, password, rememberMe);
+  handleSubmit({email, password, rememberMe, captcha}: FormValues, {props, setSubmitting, setErrors}) {
+    props.login(email, password, rememberMe, captcha)
+    setSubmitting(false)
   }
 })(InnerForm)
+export const Login =  connect(null,
+    {login})(LoginFormik)
