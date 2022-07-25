@@ -1,4 +1,4 @@
-import {addMessageActionCreator, changeTextMessageActionCreator} from "./dialogs-reducer";
+import {addMessageActionCreator} from "./dialogs-reducer";
 import {addPost, changeTextPost, SetStatusType, SetUserProfileType} from "./profile-reducer";
 import {
   FollowACType,
@@ -7,7 +7,7 @@ import {
   SetUsersACType, ToggleIsFetchingACType, ToggleIsFollowingType,
   UnfollowACType
 } from "./users-reducer";
-import {SetUsersDataType} from "./auth-reducer";
+import { SetUsersDataType} from "./auth-reducer";
 
 export type StoreType = {
   _state: StatePropsType
@@ -56,13 +56,11 @@ export type ProfileType = {
 export type AddPostActionType = ReturnType<typeof addPost>
 export type ChangeTextPostActionType = ReturnType<typeof changeTextPost>
 export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
-export type ChangeTextMessageActionType = ReturnType<typeof changeTextMessageActionCreator>
 
 export type ActionTypes =
   AddPostActionType
   | ChangeTextPostActionType
   | AddMessageActionType
-  | ChangeTextMessageActionType
   | FollowACType
   | UnfollowACType
   | SetUsersACType
@@ -73,3 +71,4 @@ export type ActionTypes =
   | SetUsersDataType
   | ToggleIsFollowingType
   | SetStatusType
+
