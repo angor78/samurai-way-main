@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {Badge, Box, Button, Image, Progress, Textarea} from "@chakra-ui/react";
+import {Badge, Box, Button, CircularProgress, Image, Textarea} from "@chakra-ui/react";
 import {ProfileType} from "../../../redux/storeTypes";
 import {ProfileStatus} from "./ProfileStatus";
 
@@ -19,7 +19,9 @@ const ProfileInfo = (props: ProfileInfoType) => {
     props.changePost(e.currentTarget.value)
   }
   if (!props.profile) {
-    return <Box h={'10'}><Progress size='xs' isIndeterminate colorScheme='teal'/></Box>
+    return <Box width={'100%'} textAlign={'center'}>
+      <CircularProgress isIndeterminate color='teal.300' size='220px'/>
+    </Box>
   } else {
     return (
       <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>

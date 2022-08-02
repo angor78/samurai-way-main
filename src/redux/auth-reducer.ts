@@ -48,12 +48,11 @@ export const setAuthUserData = (id: number, email: string, login: string, isAuth
 //Thunk
 export const authMe = () =>
   (dispatch: Dispatch) => {
-    authMeAPI.authMe().then(res => {
+    return authMeAPI.authMe().then(res => {
       if (res.data.resultCode === 0) {
         let data = res.data.data
         dispatch(setAuthUserData(data.id, data.email, data.login, true))
       }
-
     })
   }
 
@@ -63,7 +62,8 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
       .then(data => {
         if (data.data.resultCode === 0) {
           dispatch(authMe())
-          window.location.replace(`/`)
+          let authUserId = data.data.data.userId
+          window.location.replace(`/profile/${authUserId}`)
         } else {
           setStatus({error:data.data.messages})
         }

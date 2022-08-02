@@ -19,7 +19,6 @@ import {initialAuthType} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
   auth: initialAuthType
-  setAuthUserData: (id: number, email: string, login: string, isAuth: boolean) => void
   logout:()=>void
 }
 

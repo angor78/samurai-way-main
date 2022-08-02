@@ -1,5 +1,5 @@
 import React from "react";
-import {ChakraProvider} from '@chakra-ui/react'
+import {ChakraProvider, CircularProgress} from '@chakra-ui/react'
 import "./App.css"
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -11,31 +11,59 @@ import {MainImage} from "./components/MainImage/MainImage";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
+import {connect} from "react-redux";
+import {AppStateType} from "./redux/redux-store";
+import {inititializeApp} from "./redux/app-reducer";
 
-function App() {
-  return (
-    <ChakraProvider>
-      <HeaderContainer/>
-      <div className="app-wrap">
-        <div className="app-wrap-content">
-          <Routes>
-            <Route path="/" element={<MainImage/>}/>
-            <Route path="/main" element={<MainImage/>}/>
-            <Route path={"/dialogs"}
-                   element={<DialogsContainer/>}/>
-            <Route path={"/users"}
-                   element={<UsersContainer/>}/>
-            <Route path={'/profile/:userId'}
-                   element={<ProfileContainer />}/>
-            <Route path={"/music"} element={<Music/>}/>
-            <Route path={"/news"} element={<News/>}/>
-            <Route path={"/settings"} element={<Settings/>}/>
-            <Route path={"/login"} element={<Login/>}/>
-          </Routes>
+
+class App extends React.Component<AppClassContainerType> {
+  componentDidMount() {
+    this.props.inititializeApp()
+  }
+
+  render() {
+    if (!this.props.initialized) {
+      return (
+        <ChakraProvider>
+          <CircularProgress isIndeterminate color='teal.300' size='220px'/>
+        </ChakraProvider>
+      )
+    }
+    return (
+      <ChakraProvider>
+        <HeaderContainer/>
+        <div className="app-wrap">
+          <div className="app-wrap-content">
+            <Routes>
+              <Route path="/" element={<MainImage/>}/>
+              <Route path="/main" element={<MainImage/>}/>
+              <Route path={"/dialogs"}
+                     element={<DialogsContainer/>}/>
+              <Route path={"/users"}
+                     element={<UsersContainer/>}/>
+              <Route path={'/profile/:userId'}
+                     element={<ProfileContainer/>}/>
+              <Route path={"/music"} element={<Music/>}/>
+              <Route path={"/news"} element={<News/>}/>
+              <Route path={"/settings"} element={<Settings/>}/>
+              <Route path={"/login"} element={<Login/>}/>
+            </Routes>
+          </div>
         </div>
-      </div>
-    </ChakraProvider>
-  );
+      </ChakraProvider>
+    )
+  }
 }
 
-export default App;
+type MapStatePropsType = {
+  initialized: boolean
+}
+type MapDispatchPropsType = {
+  inititializeApp: () => void
+}
+export type AppClassContainerType = MapStatePropsType & MapDispatchPropsType
+
+const mapStateToProps = (state: AppStateType) => {
+  return {initialized: state.app.initialized}
+}
+export default connect(mapStateToProps, {inititializeApp})(App)

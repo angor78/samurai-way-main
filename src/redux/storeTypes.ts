@@ -7,7 +7,8 @@ import {
   SetUsersACType, ToggleIsFetchingACType, ToggleIsFollowingType,
   UnfollowACType
 } from "./users-reducer";
-import { SetUsersDataType} from "./auth-reducer";
+import {SetUsersDataType} from "./auth-reducer";
+import {InitializedSuccessType} from "./app-reducer";
 
 export type StoreType = {
   _state: StatePropsType
@@ -71,4 +72,5 @@ export type ActionTypes =
   | SetUsersDataType
   | ToggleIsFollowingType
   | SetStatusType
+  | InitializedSuccessType
 
