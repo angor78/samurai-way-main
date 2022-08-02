@@ -10,7 +10,6 @@ import React from "react";
 import Profile from "./Profile";
 import {withRouter} from "../../hoc/withRouter";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type ProfileClassContainerType = ProfilePropsType & {
   router: { params: { userId: string } }
@@ -62,5 +61,5 @@ export default compose<React.ComponentType>(
   connect(mapStateToProps,
     {addPost, changeTextPost, setUserProfile, getUserProfile, getStatus, updateStatus}),
   withRouter,
-  withAuthRedirect
+  // withAuthRedirect
 )(ProfileClassContainer)
