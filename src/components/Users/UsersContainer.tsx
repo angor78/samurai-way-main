@@ -8,6 +8,14 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import React from "react";
 import Users from "./Users";
+import {
+  getCurentPage,
+  getFollowing,
+  getIsfetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUsersPage
+} from "../../redux/users-selectors";
 
 type MapStatePropsType = {
   usersPage: initialUsersStateType
@@ -56,12 +64,12 @@ class UsersClassContainer extends React.Component<UsersPropsType> {
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
-    usersPage: state.usersPage,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    following: state.usersPage.following
+    usersPage: getUsersPage(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurentPage(state),
+    isFetching: getIsfetching(state),
+    following: getFollowing(state)
   }
 }
 
