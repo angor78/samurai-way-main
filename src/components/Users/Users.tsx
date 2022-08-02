@@ -13,9 +13,11 @@ import {
 } from "@chakra-ui/react";
 import {SearchIcon} from "@chakra-ui/icons";
 import {User} from "./User";
+import {UserType} from "../../redux/users-reducer";
 
 type UsersType = UsersPropsType & {
   onPageChanged: (page: number) => void
+  users: Array<UserType>
 }
 const Users = (props: UsersType) => {
 
@@ -58,7 +60,7 @@ const Users = (props: UsersType) => {
                 display={"flex"}
                 overflow='hidden'>
         <Center display={'inline-block'}>
-          {props.usersPage.users.map(u =>
+          {props.users.map(u =>
             <User key={u.id} user={u} follow={props.follow} unfollow={props.unfollow} following={props.following}/>
           )}
         </Center>

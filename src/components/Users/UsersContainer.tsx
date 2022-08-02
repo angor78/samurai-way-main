@@ -3,7 +3,7 @@ import {
   follow, getUsers,
   initialUsersStateType,
   setTotalUsersCount,
-  unfollow,
+  unfollow, UserType,
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import React from "react";
@@ -14,10 +14,11 @@ import {
   getIsfetching,
   getPageSize,
   getTotalUsersCount,
-  getUsersPage
+  getUsersPage, getUsersSuper
 } from "../../redux/users-selectors";
 
 type MapStatePropsType = {
+  users: Array<UserType>
   usersPage: initialUsersStateType
   pageSize: number
   totalUsersCount: number
@@ -46,6 +47,7 @@ class UsersClassContainer extends React.Component<UsersPropsType> {
   render = () => {
     return (
       <Users usersPage={this.props.usersPage}
+             users={this.props.users}
              pageSize={this.props.pageSize}
              totalUsersCount={this.props.totalUsersCount}
              currentPage={this.props.currentPage}
@@ -64,6 +66,7 @@ class UsersClassContainer extends React.Component<UsersPropsType> {
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
+    users: getUsersSuper(state),
     usersPage: getUsersPage(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
