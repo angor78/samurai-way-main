@@ -14,7 +14,7 @@ const Profile = (props: ProfilePropsType) => {
           posts={props.profilePage.posts}
         />
       </Box>
-      <Box maxW={'300'} float={'right'} p={'10'}>
+      <Box maxW={'500'} float={'right'} p={'10'}>
         <ProfileInfo profile={props.profilePage.profile}
                      status={props.status}
                      addPost={props.addPost}

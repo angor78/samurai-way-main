@@ -24,18 +24,18 @@ const ProfileInfo = (props: ProfileInfoType) => {
     </Box>
   } else {
     return (
-      <Box textAlign={'center'} maxW={'300'} minW={'300'} float={'right'} p={'10'} pt={'0'}>
+      <Box textAlign={'center'} maxW={'500'} minW={'500'} float={'right'} p={'10'} pt={'0'}>
         <Box float={'right'}>
           <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
           <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
             Add post
           </Button>
-          <Box borderWidth='1px' borderRadius='lg' p={'5'} maxW={'220px'}>
-            <Box>
-              <Badge borderRadius='full' px='5' colorScheme='red' mb={'3'} maxW={'200px'}>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+          <Box borderWidth='1px' borderRadius='lg' p={'5'} maxW={'420px'}>
+            <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+              <Badge borderRadius='full' px='5' colorScheme='red' mb={'3'} maxW={'400px'}>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} userId={props.profile.userId}/>
               </Badge>
-              <Box>
+              <Box >
                 <Image
                   borderRadius='full'
                   alt={'1111'}

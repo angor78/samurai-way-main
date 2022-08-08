@@ -12,7 +12,7 @@ type MyPostsPropsType = {
 const MyPosts = (props: MyPostsPropsType) => {
 
   let postsElements = props.posts.map(p => <span key={p.id}>{
-    <Post id={p.id} message={p.message} likeCount={p.likeCount}/>
+    <Post id={p.id} message={p.message} likeCount={p.likeCount} photo={p.photo}/>
   }</span>)
 
 

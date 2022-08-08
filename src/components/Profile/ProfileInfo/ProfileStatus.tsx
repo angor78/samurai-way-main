@@ -1,63 +1,52 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {Box, Input} from "@chakra-ui/react";
-import {EditIcon} from "@chakra-ui/icons";
+// import {useSelector} from "react-redux";
+// import {AppStateType} from "../../../redux/redux-store";
 
 
 type ProfileStatusPropsType = {
   status: string
   updateStatus: (status: string) => void
+  userId: number
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+export const ProfileStatus = (props: ProfileStatusPropsType) => {
+  let [editMode, setEditMode] = useState(false)
+  let [status, setStatus] = useState(props.status)
+  // let authUserId = useSelector<AppStateType, number>(state => state.auth.id)
 
-  state = {
-    editMode: false,
-    status: this.props.status
+  const activateEditMode = () => {
+    setEditMode(true)
   }
-  activateEditMode = () => {
-    this.setState({
-      editMode: true
-    })
-  }
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false,
-      status: this.props.status
-    })
-    this.props.updateStatus(this.state.status)
+  const deactivateEditMode = () => {
+    setEditMode(false)
+    props.updateStatus(status)
   }
 
-  onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({status: e.currentTarget.value})
-  }
-componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
-  if(prevProps.status!==this.props.status){
-    this.setState({status: this.props.status})
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.currentTarget.value)
   }
 
-}
+  return (
+    <Box>
+      { editMode
+        ?
+        <Box>
+          <Input autoFocus={true}
+                 value={status}
+                 onChange={onChangeHandler}
+                 onBlur={deactivateEditMode}
+                 size='xs'
+                 focusBorderColor='red.400'
+          />
+        </Box>
+        :
+        <Box>
+          <div onClick={activateEditMode}>{props.status}</div>
+        </Box>}
+    </Box>
 
-  render() {
-    return (
-      <Box>
-        {this.state.editMode
-          ?
-          <Box>
-            <Input autoFocus={true}
-                   value={this.state.status}
-                   onChange={this.onChangeHandler}
-                   onBlur={this.deactivateEditMode}
-                   size='xs'
-                   focusBorderColor='red.400'
-            />
-          </Box>
-          :
-          <Box>
-            <div onClick={this.activateEditMode}>{this.props.status} <EditIcon verticalAlign={'top'}/></div>
-          </Box>}
-      </Box>
+  )
 
-    )
-  }
 
 }

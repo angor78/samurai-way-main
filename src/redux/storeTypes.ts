@@ -35,6 +35,7 @@ export type PostType = {
   id: string
   message: string
   likeCount: number
+  photo: string
 }
 export type DialogType = {
   id: number

@@ -2,6 +2,10 @@ import {v1} from "uuid";
 import {ActionTypes, PostType} from "./storeTypes";
 import {getUserProfileAPI, ProfileStatusAPI} from "../api/api";
 import {Dispatch} from "redux";
+import img1 from './../images/posts-images/1.jpeg'
+import img2 from './../images/posts-images/2.jpg'
+import img3 from './../images/posts-images/3.jpg'
+import img4 from './../images/posts-images/4.png'
 
 
 const ADD_POST = 'ADD-POST'
@@ -12,22 +16,24 @@ const SET_STATUS = 'SET-STATUS'
 export type initialProfileStateType = {
   profile: any
   newTextPost: string
-  posts: Array<{ id: string, message: string, likeCount: number }>
+  posts: Array<{ id: string, message: string, likeCount: number, photo: string }>
   status: string
+
 }
 
 let initialState = {
   profile: null,
   newTextPost: '',
   posts: [
-    {id: v1(), message: "It's my first yo.", likeCount: 1},
-    {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1},
-    {id: v1(), message: "It's my first yo.", likeCount: 1},
+    {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img1},
+    {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img3},
     {
       id: v1(),
       message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n',
-      likeCount: 12
+      likeCount: 12,photo: img4
     },
+    {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
+
   ] as Array<PostType>,
   status: ''
 }
@@ -36,7 +42,7 @@ let initialState = {
 export const profileReducer = (state: initialProfileStateType = initialState, action: ActionTypes): initialProfileStateType => {
   switch (action.type) {
     case ADD_POST:
-      let newPost = {id: v1(), message: state.newTextPost, likeCount: 0}
+      let newPost = {id: v1(), message: state.newTextPost, likeCount: 0, photo: img4}
       return {...state, newTextPost: '', posts: [newPost, ...state.posts]}
 
     case CHANGE_TEXT_POST:
@@ -86,7 +92,7 @@ export const getStatus = (userId: string) =>
 export const updateStatus = (status: string) =>
   (dispatch: Dispatch) => {
     ProfileStatusAPI.updateStatus(status).then(data => {
-      if(data.data.resultCode===0){
+      if (data.data.resultCode === 0) {
         dispatch(setStatus(status))
       }
     })

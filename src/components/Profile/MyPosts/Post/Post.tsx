@@ -1,6 +1,6 @@
 import React from "react";
 import {StarIcon} from "@chakra-ui/icons";
-import {Badge, Box} from "@chakra-ui/react";
+import {Badge, Box, Image} from "@chakra-ui/react";
 import {PostType} from "../../../../redux/storeTypes";
 
 
@@ -14,6 +14,7 @@ function Post(props: PostType) {
     likes: props.likeCount,
     reviewCount: 34,
     rating: 4,
+    photo: props.photo
   }
 
   return (
@@ -33,6 +34,10 @@ function Post(props: PostType) {
           >
             {property.date} day ago &bull; {property.time} time
           </Box>
+
+        </Box>
+        <Box p={'10px'} textAlign={'left'}>
+          <Image align={'center'} src={property.photo} boxSize='100%'/>
         </Box>
 
         <Box
