@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Box, Input} from "@chakra-ui/react";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
@@ -14,6 +14,7 @@ export const ProfileStatus = (props: ProfileStatusPropsType) => {
   let [editMode, setEditMode] = useState(false)
   let [status, setStatus] = useState(props.status)
   let authUserId = useSelector<AppStateType, number>(state => state.auth.id)
+  useEffect(()=>{setStatus(props.status)},[props.status])
 
   const activateEditMode = () => {
     setEditMode(true)

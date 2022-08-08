@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './MainImage.module.css'
-import {Button, Stack} from "@chakra-ui/react";
+import {Box, Button, Stack} from "@chakra-ui/react";
 import {Text} from '@chakra-ui/react'
 
 export const MainImage = () => {
   return (
-    <div className={s.image}>
+    <Box className={s.image} display={'flex'} flexDirection={'column'} justifyContent={'center'}>
       <Stack spacing={3} color={'whiteAlpha.900'} textAlign={'center'}>
         <Text fontSize='6xl' marginTop={'100'}>Welcome to community</Text>
         <Text fontSize='5xl'>it-incubator</Text>
@@ -23,6 +23,6 @@ export const MainImage = () => {
           See Members
         </Button>
       </Stack>
-    </div>
+    </Box>
   )
 }
