@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Box, Input} from "@chakra-ui/react";
-// import {useSelector} from "react-redux";
-// import {AppStateType} from "../../../redux/redux-store";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
 
 
 type ProfileStatusPropsType = {
@@ -13,7 +13,7 @@ type ProfileStatusPropsType = {
 export const ProfileStatus = (props: ProfileStatusPropsType) => {
   let [editMode, setEditMode] = useState(false)
   let [status, setStatus] = useState(props.status)
-  // let authUserId = useSelector<AppStateType, number>(state => state.auth.id)
+  let authUserId = useSelector<AppStateType, number>(state => state.auth.id)
 
   const activateEditMode = () => {
     setEditMode(true)
@@ -29,7 +29,7 @@ export const ProfileStatus = (props: ProfileStatusPropsType) => {
 
   return (
     <Box>
-      { editMode
+      {props.userId === authUserId && editMode
         ?
         <Box>
           <Input autoFocus={true}
