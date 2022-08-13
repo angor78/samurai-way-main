@@ -37,7 +37,7 @@ class App extends React.Component<AppClassContainerType> {
           <div className="app-wrap-content">
             <Routes>
               <Route path="/" element={<MainImage/>}/>
-              <Route path="/main" element={<MainImage/>}/>
+              {/*<Route path="/main" element={<MainImage/>}/>*/}
               <Route path={"/dialogs"}
                      element={<DialogsContainer/>}/>
               <Route path={"/users"}
