@@ -5,7 +5,7 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import {Login} from "./components/Login/Login";
 import Settings from "./components/Settings/Settings";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {MainImage} from "./components/MainImage/MainImage";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -29,6 +29,9 @@ class App extends React.Component<AppClassContainerType> {
           <CircularProgress isIndeterminate color='teal.300' size='220px'/>
         </ChakraProvider>
       )
+    }
+    if(!this.props.isAuth){
+      return <Navigate to={'/login'}/>
     }
     return (
       <ChakraProvider>
@@ -57,6 +60,7 @@ class App extends React.Component<AppClassContainerType> {
 
 type MapStatePropsType = {
   initialized: boolean
+  isAuth:boolean
 }
 type MapDispatchPropsType = {
   inititializeApp: () => void
@@ -64,6 +68,6 @@ type MapDispatchPropsType = {
 export type AppClassContainerType = MapStatePropsType & MapDispatchPropsType
 
 const mapStateToProps = (state: AppStateType) => {
-  return {initialized: state.app.initialized}
+  return {initialized: state.app.initialized, isAuth: state.auth.isAuth}
 }
 export default connect(mapStateToProps, {inititializeApp})(App)
