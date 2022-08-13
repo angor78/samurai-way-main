@@ -63,7 +63,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
         if (data.data.resultCode === 0) {
           dispatch(authMe())
           let authUserId = data.data.data.userId
-          window.location.replace(`/profile/${authUserId}`)
+          window.location.replace(`/samurai-way-main/profile/${authUserId}`)
         } else {
           setStatus({error:data.data.messages})
         }
