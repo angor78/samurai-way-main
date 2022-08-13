@@ -42,7 +42,7 @@ export default function Header(props: HeaderPropsType) {
           <HStack spacing={8} alignItems={'center'}>
             <Box>
               <Heading size='lg' fontSize='28px' color={"blue.200"}>
-                <NavLink className={s.Navlink} to={"/"}>SamuraiWay</NavLink>
+                <NavLink className={s.Navlink} to={"/samurai-way-main/"}>SamuraiWay</NavLink>
               </Heading>
               <Text fontSize='xs' color={'whiteAlpha.600'} letterSpacing='2px'>social-net by angor78</Text>
             </Box>
