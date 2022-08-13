@@ -16,6 +16,7 @@ type UserPropsType = {
   follow: (userId: number) => void
   following: boolean
 }
+
 export const User = React.memo((props: UserPropsType) => {
   return <Box key={props.user.id} margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'} >
     <Box display='block' alignItems='center' verticalAlign={'middle'} flexDirection={'row'}>
