@@ -30,9 +30,7 @@ class App extends React.Component<AppClassContainerType> {
         </ChakraProvider>
       )
     }
-    // if(!this.props.isAuth){
-    //   return <Navigate to={'/login'}/>
-    // }
+
     return (
       <ChakraProvider>
         <HeaderContainer/>
