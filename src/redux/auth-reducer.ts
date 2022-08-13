@@ -75,6 +75,7 @@ export const logout = () =>
       .then(data => {
         if (data.data.resultCode === 0) {
           dispatch(setAuthUserData(0, '', '', false))
+
         }
       })
   }
