@@ -16,7 +16,7 @@ const Dialogs = (props: DialogsPropsType) => {
       : <Box key={m.id} textAlign={'right'}>{<Message message={m.message} id={m.id}/>}</Box>
   )
 
-  let dialogsElements = props.dialogsPage.dialogsData.map((d,i) =>
+  let dialogsElements = props.dialogsPage.dialogsData.map((d) =>
     <Box key={d.id} textAlign={'left'} bg={'teal'}>
       {<DialogItem name={d.name} id={d.id} avatar={d.avatar}/>}
     </Box>
@@ -60,13 +60,8 @@ interface MyFormProps {
 const AddMessageInnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const {
     values,
-    errors,
-    touched,
     handleChange,
-    handleBlur,
     handleSubmit,
-    isSubmitting,
-    title
   } = props;
 
   return (
@@ -93,7 +88,7 @@ export const AddMessageForm = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => ({
     newTextMessage: props.initialNewTextMessage || "",
   }),
-  handleSubmit({newTextMessage}: FormValues, {props, setSubmitting, setErrors}) {
+  handleSubmit({newTextMessage}: FormValues, {props, setSubmitting}) {
     props.addNewMessage(newTextMessage)
     setSubmitting(false)
   }
