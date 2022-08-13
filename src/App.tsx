@@ -42,7 +42,7 @@ class App extends React.Component<AppClassContainerType> {
                      element={<DialogsContainer/>}/>
               <Route path={"/users"}
                      element={<UsersContainer/>}/>
-              <Route path={'/profile/:userId'}
+              <Route path={'/samurai-way-main/profile/:userId'}
                      element={<ProfileContainer/>}/>
               <Route path={"/music"} element={<Music/>}/>
               <Route path={"/news"} element={<News/>}/>

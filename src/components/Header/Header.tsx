@@ -52,7 +52,7 @@ export default function Header(props: HeaderPropsType) {
               display={{base: 'none', md: 'flex'}}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/profile/"+props.auth.id}>Profile</NavLink>
+              })} to={"/samurai-way-main/profile/"+props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
               })} to={"/users"}>Users</NavLink>
