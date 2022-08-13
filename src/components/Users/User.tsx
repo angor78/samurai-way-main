@@ -19,7 +19,7 @@ type UserPropsType = {
 export const User = React.memo((props: UserPropsType) => {
   return <Box key={props.user.id} margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'} >
     <Box display='block' alignItems='center' verticalAlign={'middle'} flexDirection={'row'}>
-      <NavLink to={'/profile/' + props.user.id}>
+      <NavLink to={'/samurai-way-main/profile/' + props.user.id}>
         <Image
           src={props.user.photos.small != null ? props.user.photos.small : 'https://cdn-icons-png.flaticon.com/512/560/560216.png'}
           alt='avatar' boxSize='50px' objectFit='cover' display={'inline-block'}/>
