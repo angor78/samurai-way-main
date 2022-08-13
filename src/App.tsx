@@ -5,7 +5,7 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import {Login} from "./components/Login/Login";
 import Settings from "./components/Settings/Settings";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {MainImage} from "./components/MainImage/MainImage";
 import ProfileContainer from "./components/Profile/ProfileContainer";
