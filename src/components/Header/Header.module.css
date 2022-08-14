@@ -1,3 +1,12 @@
 .Navlink:hover{
   color: #90CDF4;
 }
+@media screen and (max-width: 1200px) {
+  .titleHead{
+    text-align: center;
+  }
+  .Navlink{
+    font-size: 24px;
+  }
+
+}

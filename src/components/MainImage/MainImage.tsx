@@ -1,28 +1,36 @@
 import React from 'react';
 import s from './MainImage.module.css'
-import {Box, Button, Stack} from "@chakra-ui/react";
-import {Text} from '@chakra-ui/react'
+import {Box, Button} from "@chakra-ui/react";
+import {NavLink} from "react-router-dom";
 
 export const MainImage = () => {
   return (
-    <Box className={s.image} display={'flex'} flexDirection={'column'} justifyContent={'center'}>
-      <Stack spacing={3} color={'whiteAlpha.900'} textAlign={'center'}>
-        <Text fontSize='6xl' marginTop={'100'}>Welcome to community</Text>
-        <Text fontSize='5xl'>it-incubator</Text>
-        <Text fontSize='2xl' p={'200'} paddingTop={0} paddingBottom={20}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur eaque ipsa itaque magni
-          odio quas qui quibusdam quod ratione rem soluta sunt tenetur, vitae voluptatem. Accusamus asperiores aut
-          sit.
-        </Text>
-      </Stack>
-      <Stack spacing={8} direction='row' align='center' display={'inline-block'}>
-        <Button colorScheme='blue' size='lg'>
-          See Posts
-        </Button>
-        <Button colorScheme='blue' size='lg'>
-          See Members
-        </Button>
-      </Stack>
-    </Box>
+      <Box className={s.image} display={'flex'}  flexDirection={'column'} justifyContent={'center'}>
+        <Box className={s.titleText} color={'whiteAlpha.900'} textAlign={'center'}>
+          <Box className={s.heading}>
+            Welcome to community
+          </Box>
+          <Box className={s.subHeading}>it-incubator</Box>
+          <Box className={s.text} p={'200'} paddingTop={0} paddingBottom={20}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur eaque ipsa itaque magni
+            odio quas qui quibusdam quod ratione rem soluta sunt tenetur, vitae voluptatem. Accusamus asperiores aut
+            sit.
+          </Box>
+          <Box className={s.buttonsBlock} display={'flex'} flexDirection={'row'} justifyContent={"center"} gap={'20px'}>
+            <Button colorScheme='blue' size='lg'>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/samurai-way-main/profile/19509"}>See Posts</NavLink>
+            </Button>
+            <Button colorScheme='blue' size='lg'>
+              <NavLink className={s.Navlink} style={({isActive}) => ({
+                color: isActive ? "#90CDF4" : '',
+              })} to={"/users"}>See Members</NavLink>
+            </Button>
+          </Box>
+        </Box>
+
+      </Box>
+
   )
 }

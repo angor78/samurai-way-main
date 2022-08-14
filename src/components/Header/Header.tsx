@@ -1,17 +1,12 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {HamburgerIcon, CloseIcon, ExternalLinkIcon} from '@chakra-ui/icons';
+import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import {Text} from '@chakra-ui/react'
 import {
-  Avatar,
   Box,
   Button, Flex, Heading,
   HStack,
-  IconButton, Link, Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
+  IconButton,
   Stack, useDisclosure
 } from "@chakra-ui/react";
 import s from './Header.module.css'
@@ -19,7 +14,7 @@ import {initialAuthType} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
   auth: initialAuthType
-  logout:()=>void
+  logout: () => void
 }
 
 export default function Header(props: HeaderPropsType) {
@@ -35,16 +30,15 @@ export default function Header(props: HeaderPropsType) {
             aria-label={'Open Menu'}
             display={{md: 'none'}}
             onClick={isOpen ? onClose : onOpen}
-            // variant='outline'
             colorScheme='blue'
             fontSize='20px'
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>
+            <Box className={s.titleHead}>
               <Heading size='lg' fontSize='28px' color={"blue.200"}>
                 <NavLink className={s.Navlink} to={"/samurai-way-main/"}>SamuraiWay</NavLink>
               </Heading>
-              <Text fontSize='xs' color={'whiteAlpha.600'} letterSpacing='2px'>social-net by angor78</Text>
+              <Text className={s.textSpan} fontSize='xs' color={'whiteAlpha.600'} letterSpacing='2px'>social-net by angor78</Text>
             </Box>
             <HStack
               as={'nav'}
@@ -52,7 +46,7 @@ export default function Header(props: HeaderPropsType) {
               display={{base: 'none', md: 'flex'}}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/profile/"+props.auth.id}>Profile</NavLink>
+              })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
               })} to={"/users"}>Users</NavLink>
@@ -70,53 +64,29 @@ export default function Header(props: HeaderPropsType) {
               })} to={"/settings"}>Settings</NavLink>
             </HStack>
           </HStack>
-          <Flex alignItems={'center'}>
-
-            <Menu>
-              {props.auth.isAuth ?
-                <Box color={'#90CDF4'}>{props.auth.login}
-                  <Button onClick={props.logout} ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
-                    Logout
-                  </Button>
-                </Box>  :
+          <Box>
+            {props.auth.isAuth ?
+              <Box>
+                <Box color={'#90CDF4'} textAlign={'center'}>{props.auth.login}</Box>
+                <Button onClick={props.logout} ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
+                  Logout
+                </Button>
+              </Box>:
+              <Box>
                 <Button ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
                   <NavLink to={'/login'}>Login</NavLink>
                 </Button>
-              }
+              </Box>
+            }
+          </Box>
 
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://avatars.githubusercontent.com/u/15981680?s=400&u=c777ec047d344fe8a7f933de75e3e3db39f78841&v=4'
-                  }
-                />
-              </MenuButton>
-              <MenuList color={"teal"}>
-                <MenuItem>
-                  <Link href='https://github.com/angor78' isExternal>
-                    GIT <ExternalLinkIcon mx='2px'/>
-                  </Link>
-                </MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider/>
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
         </Flex>
-
         {isOpen ? (
           <Box pb={4} display={{md: 'none'}}>
             <Stack as={'nav'} spacing={4}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/profile/"+props.auth.id}>Profile</NavLink>
+              })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
               })} to={"/users"}>Users</NavLink>
