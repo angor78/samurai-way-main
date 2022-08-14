@@ -24,18 +24,15 @@ const ProfileInfo = (props: ProfileInfoType) => {
     </Box>
   } else {
     return (
-      <Box textAlign={'center'} maxW={'500'} minW={'500'} float={'right'} p={'10'} pt={'0'}>
-        <Box float={'right'}>
-          <Textarea placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
-          <Button colorScheme='teal' mt={'5'} mb={'15'} size='sm' onClick={onClickAddPostHandler}>
-            Add post
-          </Button>
+      <Box minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
+           alignItems={'top'}>
+        <Box>
           <Box borderWidth='1px' borderRadius='lg' p={'5'} maxW={'420px'}>
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
               <Badge borderRadius='full' px='5' colorScheme='red' mb={'3'} maxW={'400px'}>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} userId={props.profile.userId}/>
               </Badge>
-              <Box >
+              <Box>
                 <Image
                   borderRadius='full'
                   alt={'1111'}
@@ -61,6 +58,10 @@ const ProfileInfo = (props: ProfileInfoType) => {
               </Box>
             </Box>
           </Box>
+          <Textarea mt={'15'} placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>
+          <Button colorScheme='teal' mt={'15'} mb={'5'} size='sm' onClick={onClickAddPostHandler}>
+            Add post
+          </Button>
         </Box>
       </Box>)
   }

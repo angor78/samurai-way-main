@@ -26,13 +26,14 @@ let initialState = {
   newTextPost: '',
   posts: [
     {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img1},
+    {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
+
     {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img3},
     {
       id: v1(),
       message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n',
       likeCount: 12,photo: img4
     },
-    {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
 
   ] as Array<PostType>,
   status: ''

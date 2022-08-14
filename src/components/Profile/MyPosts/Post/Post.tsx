@@ -18,7 +18,7 @@ function Post(props: PostType) {
   }
 
   return (
-    <Box margin={0} p={0} maxW='lg' minW='2xs' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+    <Box margin={3} borderWidth='1px' borderRadius='lg' overflow={'hidden'} padding={'5'} >
       <Box p='6'>
         <Box display='flex' alignItems='baseline'>
           <Badge borderRadius='full' px='2' colorScheme='teal'>

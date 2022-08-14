@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post/Post"
 import s from "./MyPosts.module.css"
-import {Box} from "@chakra-ui/react";
+import {Center} from "@chakra-ui/react";
 import {PostType} from "../../../redux/storeTypes";
 
 
@@ -17,9 +17,9 @@ const MyPosts = (props: MyPostsPropsType) => {
 
 
   return (<div className={s.content}>
-    <Box alignItems={'top'} display={"flex"} flexWrap={'wrap'} justifyContent={'center'}>
+    <Center display={'flex'} flexWrap={"wrap"}>
       {postsElements}
-    </Box>
+    </Center>
   </div>)
 }
 
