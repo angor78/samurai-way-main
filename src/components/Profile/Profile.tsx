@@ -24,9 +24,7 @@ const Profile = (props: ProfilePropsType) => {
                   width={'70%'}
                   display={"flex"}
                   overflow='hidden'>
-          <MyPosts
-            posts={props.profilePage.posts}
-          />
+          <MyPosts posts={props.profilePage.posts}/>
         </WrapItem>
     </Wrap>
 

@@ -9,8 +9,7 @@ type MyPostsPropsType = {
   posts: Array<PostType>
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
-
+const MyPosts = React.memo((props: MyPostsPropsType) => {
   let postsElements = props.posts.map(p => <span key={p.id}>{
     <Post id={p.id} message={p.message} likeCount={p.likeCount} photo={p.photo}/>
   }</span>)
@@ -21,6 +20,6 @@ const MyPosts = (props: MyPostsPropsType) => {
       {postsElements}
     </Center>
   </div>)
-}
+})
 
 export default MyPosts
