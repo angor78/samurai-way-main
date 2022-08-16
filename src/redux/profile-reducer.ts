@@ -9,6 +9,7 @@ import img4 from './../images/posts-images/4.png'
 
 
 const ADD_POST = 'ADD-POST'
+const DELETE_POST = 'DELETE-POST'
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
@@ -25,14 +26,14 @@ let initialState = {
   profile: null,
   newTextPost: '',
   posts: [
-    {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img1},
-    {id: v1(), message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
+    {id: '1', message: "It's my first yo.", likeCount: 1, photo: img1},
+    {id: '2', message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
 
-    {id: v1(), message: "It's my first yo.", likeCount: 1, photo: img3},
+    {id: '3', message: "It's my first yo.", likeCount: 1, photo: img3},
     {
-      id: v1(),
+      id: '4',
       message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda at consequatur cumque dolore eius est ipsam iure magnam magni, nihil placeat quia quibusdam, quis, temporibus voluptatem. Accusantium, quos?\n',
-      likeCount: 12,photo: img4
+      likeCount: 12, photo: img4
     },
 
   ] as Array<PostType>,
@@ -43,9 +44,10 @@ let initialState = {
 export const profileReducer = (state: initialProfileStateType = initialState, action: ActionTypes): initialProfileStateType => {
   switch (action.type) {
     case ADD_POST:
-      let newPost = {id: v1(), message: state.newTextPost, likeCount: 0, photo: img4}
+      let newPost = {id: v1(), message: action.message, likeCount: 0, photo: img4}
       return {...state, newTextPost: '', posts: [newPost, ...state.posts]}
-
+    case DELETE_POST:
+      return {...state, posts: state.posts.filter(el => el.id !== action.postId)}
     case CHANGE_TEXT_POST:
       return {...state, newTextPost: action.postText}
 
@@ -61,8 +63,12 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
 }
 
 
-export const addPost = () => {
-  return {type: 'ADD-POST'} as const
+export const addPost = (message: string) => {
+  return {type: 'ADD-POST', message} as const
+}
+export type deletePostType = ReturnType<typeof deletePost>
+export const deletePost = (postId: string) => {
+  return {type: DELETE_POST, postId} as const
 }
 export const changeTextPost = (postText: string) => {
   return {type: 'CHANGE-TEXT-POST', postText: postText} as const
