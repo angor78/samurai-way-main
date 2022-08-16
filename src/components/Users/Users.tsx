@@ -2,7 +2,6 @@ import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import {
   Box,
-  Button,
   Center,
   FormControl,
   FormLabel, Heading, IconButton,
@@ -14,6 +13,7 @@ import {
 import {SearchIcon} from "@chakra-ui/icons";
 import {User} from "./User";
 import {UserType} from "../../redux/users-reducer";
+import Paginator from '../../common/Paginator';
 
 type UsersType = UsersPropsType & {
   onPageChanged: (page: number) => void
@@ -21,17 +21,15 @@ type UsersType = UsersPropsType & {
 }
 const Users = (props: UsersType) => {
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-  let pages = []
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i)
-  }
-
   return (
     <Wrap spacing='30px' display={"flex"} flexWrap={'wrap'}>
       <WrapItem>
         <Center ml={'20px'} mt={'10px'} display={'flex'} flexDirection={'column'}>
-          <FormControl minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
+          <FormControl minW={'300'}
+                       p={'7'}
+                       borderWidth='1px'
+                       borderRadius='lg'
+                       overflow='hidden'
                        alignItems={'top'}>
             <FormLabel htmlFor='first-name'>Find user...</FormLabel>
             <Input id='first-name' placeholder='Enter name...'/>
@@ -45,12 +43,11 @@ const Users = (props: UsersType) => {
           </FormControl>
           <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
           <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
-            <Box>
-              {pages.map((p, i) => props.currentPage === p ?
-                <Button colorScheme={'teal'} key={i}>{p}</Button> :
-                <Button onClick={() => props.onPageChanged(p)} key={i}>{p}</Button>
-              )}
-            </Box>
+            <Paginator totalUsersCount={props.totalUsersCount}
+                       currentPage={props.currentPage}
+                       pageSize={props.pageSize}
+                       onPageChanged={props.onPageChanged}
+            />
             {props.isFetching ? <Progress size='xs' isIndeterminate colorScheme='teal'/> : null}
           </Box>
         </Center>

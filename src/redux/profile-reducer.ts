@@ -8,11 +8,11 @@ import img3 from './../images/posts-images/3.jpg'
 import img4 from './../images/posts-images/4.png'
 
 
-const ADD_POST = 'ADD-POST'
-const DELETE_POST = 'DELETE-POST'
-const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_STATUS = 'SET-STATUS'
+const ADD_POST = '/profile/ADD-POST'
+const DELETE_POST = '/profile/DELETE-POST'
+const CHANGE_TEXT_POST = '/profile/CHANGE-TEXT-POST'
+const SET_USER_PROFILE = '/profile/SET-USER-PROFILE'
+const SET_STATUS = '/profile/SET-STATUS'
 
 export type initialProfileStateType = {
   profile: any
@@ -64,14 +64,14 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
 
 
 export const addPost = (message: string) => {
-  return {type: 'ADD-POST', message} as const
+  return {type: ADD_POST, message} as const
 }
 export type deletePostType = ReturnType<typeof deletePost>
 export const deletePost = (postId: string) => {
   return {type: DELETE_POST, postId} as const
 }
 export const changeTextPost = (postText: string) => {
-  return {type: 'CHANGE-TEXT-POST', postText: postText} as const
+  return {type: CHANGE_TEXT_POST, postText: postText} as const
 }
 
 export type SetUserProfileType = ReturnType<typeof setUserProfile>
@@ -84,18 +84,17 @@ export const setStatus = (status: string) => {
 }
 
 //Thunk
-export const getUserProfile = (userId: string) =>
-  (dispatch: Dispatch) => {
-    getUserProfileAPI.getUserProfile(userId).then(data => {
-      dispatch(setUserProfile(data.data))
-    })
-  }
-export const getStatus = (userId: string) =>
-  (dispatch: Dispatch) => {
-    ProfileStatusAPI.getStatus(userId).then(data => {
-      dispatch(setStatus(data.data))
-    })
-  }
+export const getUserProfile = ((userId: string) =>
+  async function (dispatch: Dispatch) {
+    let data = await getUserProfileAPI.getUserProfile(userId)
+    dispatch(setUserProfile(data.data))
+
+  })
+export const getStatus = ((userId: string) =>
+  async function (dispatch: Dispatch) {
+    let data = await ProfileStatusAPI.getStatus(userId)
+    dispatch(setStatus(data.data))
+  })
 export const updateStatus = (status: string) =>
   (dispatch: Dispatch) => {
     ProfileStatusAPI.updateStatus(status).then(data => {
