@@ -19,6 +19,8 @@ type UsersType = UsersPropsType & {
   onPageChanged: (page: number) => void
   users: Array<UserType>
 }
+
+
 const Users = (props: UsersType) => {
 
   return (
@@ -41,6 +43,7 @@ const Users = (props: UsersType) => {
             <IconButton mt={'5'} float={'right'} aria-label='Search database' icon={<SearchIcon/>}/>
             {props.totalUsersCount}
           </FormControl>
+          11
           <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
           <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
             <Paginator totalUsersCount={props.totalUsersCount}
