@@ -1,6 +1,7 @@
 import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import {
+  Badge,
   Box,
   Center,
   FormControl,
@@ -10,7 +11,7 @@ import {
   Wrap,
   WrapItem
 } from "@chakra-ui/react";
-import {SearchIcon} from "@chakra-ui/icons";
+import { SearchIcon} from "@chakra-ui/icons";
 import {User} from "./User";
 import {UserType} from "../../redux/users-reducer";
 import Paginator from '../../common/Paginator';
@@ -41,17 +42,18 @@ const Users = (props: UsersType) => {
               <option>Saturn</option>
             </Select>
             <IconButton mt={'5'} float={'right'} aria-label='Search database' icon={<SearchIcon/>}/>
-            {props.totalUsersCount}
           </FormControl>
-          11
           <Heading size={'sm'} mt={'20'} mb={'30'} color={'gray.500'}>Pages</Heading>
+          <Badge borderRadius='full' px='2' mb={'2'} colorScheme='gray'>Total users: {props.totalUsersCount}</Badge>
           <Box display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
             <Paginator totalUsersCount={props.totalUsersCount}
                        currentPage={props.currentPage}
                        pageSize={props.pageSize}
                        onPageChanged={props.onPageChanged}
             />
-            {props.isFetching ? <Progress size='xs' isIndeterminate colorScheme='teal'/> : null}
+            {props.isFetching ?
+              <Progress size='xs' mt={'2'} isIndeterminate colorScheme='teal'/> :
+              <Progress size='xs' mt={'2'}/>}
           </Box>
         </Center>
       </WrapItem>

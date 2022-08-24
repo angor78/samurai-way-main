@@ -37,7 +37,7 @@ export type initialUsersStateType = {
 let initialState = {
   users: [] as Array<UserType>,
   pageSize: 10,
-  totalUsersCount: 50,
+  totalUsersCount: 500,
   currentPage: 1,
   isFetching: false,
   following: false
@@ -120,6 +120,7 @@ export const getUsers = ((currentPage: number, pageSize: number) =>
     dispatch(setCurrentPage(currentPage))
     dispatch(toggleIsFetching(false))
     dispatch(setUsers(data.data.items))
+    dispatch(setTotalUsersCount(data.data.totalCount))
   })
 
 export const follow = (userId: number) =>

@@ -24,7 +24,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
     </Box>
   } else {
     return (
-      <Box minW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
+      <Box minW={'300'} maxW={'300'} p={'7'} borderWidth='1px' borderRadius='lg' overflow='hidden'
            alignItems={'top'}>
         <Box>
           <Box borderWidth='1px' borderRadius='lg' p={'5'} maxW={'420px'}>
@@ -42,7 +42,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 />
               </Box>
 
-              <Box>
+              <Box textAlign={'center'}>
                 <Badge borderRadius='full' px='5' colorScheme='blue'>
                   Name: {props.profile.fullName}
                 </Badge>
