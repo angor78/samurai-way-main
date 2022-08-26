@@ -1,5 +1,5 @@
 import React from "react";
-import {ChakraProvider, CircularProgress} from '@chakra-ui/react'
+import {ChakraProvider, CircularProgress, Progress} from '@chakra-ui/react'
 import "./App.css"
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -8,13 +8,14 @@ import Settings from "./components/Settings/Settings";
 import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {MainImage} from "./components/MainImage/MainImage";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {AppStateType} from "./redux/redux-store";
 import {inititializeApp} from "./redux/app-reducer";
 
+const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileContainer"))
 
 class App extends React.Component<AppClassContainerType> {
   componentDidMount() {
@@ -43,7 +44,11 @@ class App extends React.Component<AppClassContainerType> {
               <Route path={"/users"}
                      element={<UsersContainer/>}/>
               <Route path={'/samurai-way-main/profile/:userId'}
-                     element={<ProfileContainer/>}/>
+                     element={
+                       <React.Suspense fallback={<Progress size='xs' mt={'2'} isIndeterminate colorScheme='teal'/>}>
+                         <ProfileContainer/>
+                       </React.Suspense>
+                     }/>
               <Route path={"/music"} element={<Music/>}/>
               <Route path={"/news"} element={<News/>}/>
               <Route path={"/settings"} element={<Settings/>}/>
@@ -58,7 +63,7 @@ class App extends React.Component<AppClassContainerType> {
 
 type MapStatePropsType = {
   initialized: boolean
-  isAuth:boolean
+  isAuth: boolean
 }
 type MapDispatchPropsType = {
   inititializeApp: () => void
