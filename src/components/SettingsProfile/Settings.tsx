@@ -28,7 +28,7 @@ export const Settings = () => {
     <Box display={'flex'} flexDirection={'column'} mt={'10'} alignItems={'center'}>
       <Heading display={'block'} mb={'30'}>Settings</Heading>
       <Button colorScheme={'green'} mb={'5'} size={'sm'}>
-        <NavLink to={'/samurai-way-main/profile/' + authUserId}>
+        <NavLink to={'/profile/' + authUserId}>
           Apply</NavLink>
       </Button>
       <Box border={'1px'} p={'5'} borderColor={'#EDF2F7'}>

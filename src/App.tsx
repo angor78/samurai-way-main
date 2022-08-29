@@ -1,5 +1,5 @@
 import React from "react";
-import {ChakraProvider, CircularProgress, Progress} from '@chakra-ui/react'
+import {ChakraProvider, CircularProgress} from '@chakra-ui/react'
 import "./App.css"
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -37,19 +37,19 @@ class App extends React.Component<AppClassContainerType> {
         <div className="app-wrap">
           <div className="app-wrap-content">
             <Routes>
-              <Route path="/samurai-way-main/" element={<MainImage/>}/>
-              <Route path={"/samurai-way-main/dialogs"}
+              <Route path="/" element={<MainImage/>}/>
+              <Route path={"/dialogs"}
                      element={<DialogsContainer/>}/>
-              <Route path={"/samurai-way-main/users"}
+              <Route path={"/users"}
                      element={<UsersContainer/>}/>
-              <Route path={'/samurai-way-main/profile/:userId'}
+              <Route path={'/profile/:userId'}
                      element={
                          <ProfileContainer/>
                      }/>
-              <Route path={"/samurai-way-main/music"} element={<Music/>}/>
-              <Route path={"/samurai-way-main/news"} element={<News/>}/>
-              <Route path={"/samurai-way-main/settings"} element={<Settings/>}/>
-              <Route path={"/samurai-way-main/login"} element={<Login/>}/>
+              <Route path={"/music"} element={<Music/>}/>
+              <Route path={"/news"} element={<News/>}/>
+              <Route path={"/settings"} element={<Settings/>}/>
+              <Route path={"/login"} element={<Login/>}/>
             </Routes>
           </div>
         </div>

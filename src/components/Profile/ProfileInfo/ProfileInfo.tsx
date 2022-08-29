@@ -59,7 +59,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 </Badge>
               </Box>
               <Button colorScheme={'blue'} mt={'5'} size={'sm'}>
-                <NavLink to={'/samurai-way-main/settings'}>
+                <NavLink to={'/settings'}>
                   <ArrowForwardIcon/> Setting</NavLink>
               </Button>
             </Box>

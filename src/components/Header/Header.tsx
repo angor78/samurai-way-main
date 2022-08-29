@@ -36,7 +36,7 @@ export default function Header(props: HeaderPropsType) {
           <HStack spacing={8} alignItems={'center'}>
             <Box className={s.titleHead}>
               <Heading size='lg' fontSize='28px' color={"blue.200"}>
-                <NavLink className={s.Navlink} to={"/samurai-way-main/"}>SamuraiWay</NavLink>
+                <NavLink className={s.Navlink} to={"/"}>SamuraiWay</NavLink>
               </Heading>
               <Text className={s.textSpan} fontSize='xs' color={'whiteAlpha.600'} letterSpacing='2px'>social-net by angor78</Text>
             </Box>
@@ -46,19 +46,19 @@ export default function Header(props: HeaderPropsType) {
               display={{base: 'none', md: 'flex'}}>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
+              })} to={"/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/users"}>Users</NavLink>
+              })} to={"/users"}>Users</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/dialogs"}>Messages</NavLink>
+              })} to={"/dialogs"}>Messages</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/news"}>News</NavLink>
+              })} to={"/news"}>News</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/music"}>Musik</NavLink>
+              })} to={"/music"}>Musik</NavLink>
 
             </HStack>
           </HStack>
@@ -72,7 +72,7 @@ export default function Header(props: HeaderPropsType) {
               </Box>:
               <Box>
                 <Button ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
-                  <NavLink to={'/samurai-way-main/login'}>Login</NavLink>
+                  <NavLink to={'login'}>Login</NavLink>
                 </Button>
               </Box>
             }
@@ -84,19 +84,19 @@ export default function Header(props: HeaderPropsType) {
             <Stack as={'nav'} spacing={4}>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
+              })} to={"/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/users"}>Users</NavLink>
+              })} to={"/users"}>Users</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/dialogs"}>Messages</NavLink>
+              })} to={"/dialogs"}>Messages</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/news"}>News</NavLink>
+              })} to={"/news"}>News</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/samurai-way-main/music"}>Musik</NavLink>
+              })} to={"/music"}>Musik</NavLink>
             </Stack>
           </Box>
         ) : null}
