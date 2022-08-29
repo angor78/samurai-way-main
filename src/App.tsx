@@ -4,18 +4,17 @@ import "./App.css"
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import {Login} from "./components/Login/Login";
-import Settings from "./components/Settings/Settings";
+import {Settings} from "./components/SettingsProfile/Settings";
 import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {MainImage} from "./components/MainImage/MainImage";
-// import ProfileContainer from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {AppStateType} from "./redux/redux-store";
 import {inititializeApp} from "./redux/app-reducer";
 
-const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileContainer"))
 
 class App extends React.Component<AppClassContainerType> {
   componentDidMount() {
@@ -39,20 +38,18 @@ class App extends React.Component<AppClassContainerType> {
           <div className="app-wrap-content">
             <Routes>
               <Route path="/samurai-way-main/" element={<MainImage/>}/>
-              <Route path={"/dialogs"}
+              <Route path={"/samurai-way-main/dialogs"}
                      element={<DialogsContainer/>}/>
-              <Route path={"/users"}
+              <Route path={"/samurai-way-main/users"}
                      element={<UsersContainer/>}/>
               <Route path={'/samurai-way-main/profile/:userId'}
                      element={
-                       <React.Suspense fallback={<Progress size='xs' mt={'2'} isIndeterminate colorScheme='teal'/>}>
                          <ProfileContainer/>
-                       </React.Suspense>
                      }/>
-              <Route path={"/music"} element={<Music/>}/>
-              <Route path={"/news"} element={<News/>}/>
-              <Route path={"/settings"} element={<Settings/>}/>
-              <Route path={"/login"} element={<Login/>}/>
+              <Route path={"/samurai-way-main/music"} element={<Music/>}/>
+              <Route path={"/samurai-way-main/news"} element={<News/>}/>
+              <Route path={"/samurai-way-main/settings"} element={<Settings/>}/>
+              <Route path={"/samurai-way-main/login"} element={<Login/>}/>
             </Routes>
           </div>
         </div>

@@ -26,8 +26,10 @@ let initialState = {
   profile: null,
   newTextPost: '',
   posts: [
-    {id: '1', message: "It's my first yo.Lorem ipsum" +
-        " dolor sit amet elit.", likeCount: 1, photo: img1},
+    {
+      id: '1', message: "It's my first yo.Lorem ipsum" +
+        " dolor sit amet elit.", likeCount: 1, photo: img1
+    },
     {id: '2', message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
 
     {id: '3', message: "It's my first yo.", likeCount: 1, photo: img3},
@@ -39,7 +41,7 @@ let initialState = {
 
   ] as Array<PostType>,
   status: '',
-  photos: ''
+  photos: '',
 }
 
 
@@ -58,9 +60,6 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
 
     case SET_STATUS:
       return {...state, status: action.status}
-
-    case "SET_PHOTOS":
-      return {...state, photos: action.file}
 
     default:
       return state
@@ -87,10 +86,11 @@ export type SetStatusType = ReturnType<typeof setStatus>
 export const setStatus = (status: string) => {
   return {type: SET_STATUS, status} as const
 }
-export type SetPhotoSuccessType = ReturnType<typeof setPhotoSuccess>
-export const setPhotoSuccess = (file: any) => {
-  return {type: 'SET_PHOTOS', file} as const
+export type SetIsUploadType = ReturnType<typeof setIsUpload>
+export const setIsUpload = (isUpload: boolean) => {
+  return {type: 'IS_UPLOAD', isUpload} as const
 }
+
 
 //Thunk
 export const getUserProfile = ((userId: string) =>
@@ -113,10 +113,41 @@ export const updateStatus = (status: string) =>
     })
   }
 export const savePhoto = (photos: any[]) =>
-  (dispatch: any) => {
+  (dispatch: any, getState: any) => {
     ProfileStatusAPI.savePhoto(photos).then(data => {
+      let userId = getState().profilePage.profile.id
       if (data.data.resultCode === 0) {
-        dispatch(setPhotoSuccess(data.data.large))
+        debugger
+        dispatch(getUserProfile(userId))
+      }
+    })
+  }
+
+export const updateName = (name: string) =>
+  (dispatch: any, getState: () => any) => {
+    let userId = getState().profilePage.profile.id
+    let payload = {
+      fullName: name,
+      aboutMe: getState().profilePage.profile.aboutMe,
+      lookingForAJobDescription: getState().profilePage.profile.lookingForAJobDescription,
+    }
+    ProfileStatusAPI.updateName(payload).then(data => {
+      if (data.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+      }
+    })
+  }
+export const updateAboutMe = (aboutMe: string) =>
+  (dispatch: any, getState: () => any) => {
+    let userId = getState().profilePage.profile.id
+    let payload = {
+      fullName: getState().profilePage.profile.fullName,
+      aboutMe: aboutMe,
+      lookingForAJobDescription: getState().profilePage.profile.lookingForAJobDescription,
+    }
+    ProfileStatusAPI.updateAboutMe(payload).then(data => {
+      if (data.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
       }
     })
   }

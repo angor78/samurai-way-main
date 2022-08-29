@@ -49,19 +49,17 @@ export default function Header(props: HeaderPropsType) {
               })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/users"}>Users</NavLink>
+              })} to={"/samurai-way-main/users"}>Users</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/dialogs"}>Messages</NavLink>
+              })} to={"/samurai-way-main/dialogs"}>Messages</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/news"}>News</NavLink>
+              })} to={"/samurai-way-main/news"}>News</NavLink>
               <NavLink className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/music"}>Musik</NavLink>
-              <NavLink className={s.Navlink} style={({isActive}) => ({
-                color: isActive ? "#90CDF4" : '',
-              })} to={"/settings"}>Settings</NavLink>
+              })} to={"/samurai-way-main/music"}>Musik</NavLink>
+
             </HStack>
           </HStack>
           <Box>
@@ -74,7 +72,7 @@ export default function Header(props: HeaderPropsType) {
               </Box>:
               <Box>
                 <Button ml={'3'} mr={'3'} size={'s'} colorScheme={'red'} p={'1'}>
-                  <NavLink to={'/login'}>Login</NavLink>
+                  <NavLink to={'/samurai-way-main/login'}>Login</NavLink>
                 </Button>
               </Box>
             }
@@ -89,19 +87,16 @@ export default function Header(props: HeaderPropsType) {
               })} to={"/samurai-way-main/profile/" + props.auth.id}>Profile</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/users"}>Users</NavLink>
+              })} to={"/samurai-way-main/users"}>Users</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/dialogs"}>Messages</NavLink>
+              })} to={"/samurai-way-main/dialogs"}>Messages</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/news"}>News</NavLink>
+              })} to={"/samurai-way-main/news"}>News</NavLink>
               <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
                 color: isActive ? "#90CDF4" : '',
-              })} to={"/music"}>Musik</NavLink>
-              <NavLink onClick={onClose} className={s.Navlink} style={({isActive}) => ({
-                color: isActive ? "#90CDF4" : '',
-              })} to={"/settings"}>Settings</NavLink>
+              })} to={"/samurai-way-main/music"}>Musik</NavLink>
             </Stack>
           </Box>
         ) : null}

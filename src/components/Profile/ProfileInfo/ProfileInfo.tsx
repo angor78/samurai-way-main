@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import {Badge, Box, Button, CircularProgress, Image, Textarea} from "@chakra-ui/react";
 import {ProfileType} from "../../../redux/storeTypes";
 import {ProfileStatus} from "./ProfileStatus";
+import {NavLink} from "react-router-dom";
+import {ArrowForwardIcon} from "@chakra-ui/icons";
 
 type ProfileInfoType = {
   profile: ProfileType
@@ -56,6 +58,10 @@ const ProfileInfo = (props: ProfileInfoType) => {
                   Github: {props.profile.contacts.github}
                 </Badge>
               </Box>
+              <Button colorScheme={'blue'} mt={'5'} size={'sm'}>
+                <NavLink to={'/samurai-way-main/settings'}>
+                  <ArrowForwardIcon/> Setting</NavLink>
+              </Button>
             </Box>
           </Box>
           <Textarea mt={'15'} placeholder='New post...' onChange={onChangePostHandle} value={props.newPostText}/>

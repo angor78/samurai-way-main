@@ -50,8 +50,14 @@ export const ProfileStatusAPI = {
   },
   savePhoto(file: any) {
     let formData = new FormData()
-    formData.append('image',file)
-    return instance.put(`profile/photo`, formData,{headers:{'Content-type':' multipart/form-data'}})
+    formData.append('image', file)
+    return instance.put(`profile/photo`, formData, {headers: {'Content-type': ' multipart/form-data'}})
+  },
+  updateName(payload: any) {
+    return instance.put(`profile/`, {...payload})
+  },
+  updateAboutMe(payload: any) {
+    return instance.put(`profile/`, {...payload})
   },
 }
 

@@ -3,7 +3,6 @@ import {
   addPost,
   changeTextPost,
   deletePostType,
-  SetPhotoSuccessType,
   SetStatusType,
   SetUserProfileType
 } from "./profile-reducer";
@@ -82,5 +81,5 @@ export type ActionTypes =
   | SetStatusType
   | InitializedSuccessType
   | deletePostType
-  | SetPhotoSuccessType
+
 
