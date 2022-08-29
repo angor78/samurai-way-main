@@ -1,5 +1,12 @@
 import {addMessageActionCreator} from "./dialogs-reducer";
-import {addPost, changeTextPost, deletePostType, SetStatusType, SetUserProfileType} from "./profile-reducer";
+import {
+  addPost,
+  changeTextPost,
+  deletePostType,
+  SetPhotoSuccessType,
+  SetStatusType,
+  SetUserProfileType
+} from "./profile-reducer";
 import {
   FollowACType,
   SetCurrentPageACType,
@@ -75,4 +82,5 @@ export type ActionTypes =
   | SetStatusType
   | InitializedSuccessType
   | deletePostType
+  | SetPhotoSuccessType
 

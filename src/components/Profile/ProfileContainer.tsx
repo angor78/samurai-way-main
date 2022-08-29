@@ -10,6 +10,7 @@ import React from "react";
 import Profile from "./Profile";
 import {withRouter} from "../../hoc/withRouter";
 import {compose} from "redux";
+import {Navigate} from "react-router-dom";
 
 type ProfileClassContainerType = ProfilePropsType & {
   router: { params: { userId: string } }
@@ -19,11 +20,24 @@ type ProfileClassContainerType = ProfilePropsType & {
 }
 
 class ProfileClassContainer extends React.Component<ProfileClassContainerType> {
+  refreshProfile() {
+    let userId = this.props.router.params.userId
+    if (!userId) {
+      return <Navigate to={'/login'}/>
+    } else {
+      this.props.getUserProfile(userId)
+      this.props.getStatus(userId)
+    }
+  }
 
   componentDidMount() {
-    let userId = this.props.router.params.userId
-    this.props.getUserProfile(userId)
-    this.props.getStatus(userId)
+    this.refreshProfile()
+  }
+
+  componentDidUpdate(prevProps: Readonly<ProfileClassContainerType>, prevState: Readonly<{}>, snapshot?: any) {
+    if (this.props.router.params.userId !== prevProps.router.params.userId) {
+      this.refreshProfile()
+    }
   }
 
   render() {

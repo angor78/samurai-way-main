@@ -19,14 +19,15 @@ export type initialProfileStateType = {
   newTextPost: string
   posts: Array<{ id: string, message: string, likeCount: number, photo: string }>
   status: string
-
+  photos?: File | string
 }
 
 let initialState = {
   profile: null,
   newTextPost: '',
   posts: [
-    {id: '1', message: "It's my first yo.", likeCount: 1, photo: img1},
+    {id: '1', message: "It's my first yo.Lorem ipsum" +
+        " dolor sit amet elit.", likeCount: 1, photo: img1},
     {id: '2', message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.", likeCount: 1, photo: img2},
 
     {id: '3', message: "It's my first yo.", likeCount: 1, photo: img3},
@@ -37,7 +38,8 @@ let initialState = {
     },
 
   ] as Array<PostType>,
-  status: ''
+  status: '',
+  photos: ''
 }
 
 
@@ -56,6 +58,9 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
 
     case SET_STATUS:
       return {...state, status: action.status}
+
+    case "SET_PHOTOS":
+      return {...state, photos: action.file}
 
     default:
       return state
@@ -82,6 +87,10 @@ export type SetStatusType = ReturnType<typeof setStatus>
 export const setStatus = (status: string) => {
   return {type: SET_STATUS, status} as const
 }
+export type SetPhotoSuccessType = ReturnType<typeof setPhotoSuccess>
+export const setPhotoSuccess = (file: any) => {
+  return {type: 'SET_PHOTOS', file} as const
+}
 
 //Thunk
 export const getUserProfile = ((userId: string) =>
@@ -100,6 +109,14 @@ export const updateStatus = (status: string) =>
     ProfileStatusAPI.updateStatus(status).then(data => {
       if (data.data.resultCode === 0) {
         dispatch(setStatus(status))
+      }
+    })
+  }
+export const savePhoto = (photos: any[]) =>
+  (dispatch: any) => {
+    ProfileStatusAPI.savePhoto(photos).then(data => {
+      if (data.data.resultCode === 0) {
+        dispatch(setPhotoSuccess(data.data.large))
       }
     })
   }
